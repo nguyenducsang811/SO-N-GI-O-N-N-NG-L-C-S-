@@ -20,6 +20,8 @@ export const generateNLSLessonPlan = async (
   // Tiền xử lý để loại bỏ khoảng trắng dư thừa và mã HTML trống làm tốn quota
   const optimizeTextForTokenSaving = (text: string): string => {
     if (!text) return "";
+    if (text.startsWith("data:image/") || text.startsWith("data:application/pdf")) return text; 
+    
     let optimized = text;
     // Xóa các dòng trống liên tiếp (3 dòng trở lên thành 2 dòng)
     optimized = optimized.replace(/\n{3,}/g, '\n\n');
@@ -34,6 +36,7 @@ export const generateNLSLessonPlan = async (
 
   const cleanContent = optimizeTextForTokenSaving(info.content);
   const cleanDistribution = optimizeTextForTokenSaving(info.distributionContent || "");
+  const cleanTextbook = optimizeTextForTokenSaving(info.textbookContent || "");
 
   // Cấu hình Model: Chuỗi fallback theo yêu cầu
   const models = [
@@ -84,43 +87,75 @@ export const generateNLSLessonPlan = async (
       `;
   }
 
-  const userPrompt = `
-    DỮ LIỆU THAM CHIẾU KHUNG NĂNG LỰC SỐ:
-    ${NLS_FRAMEWORK_DATA}
-
-    THÔNG TIN GIÁO ÁN ĐẦU VÀO:
-    - Bộ sách: ${info.textbook}
-    - Môn học: ${info.subject}
-    - Khối lớp: ${info.grade}
+  // Function to determine if a string is a base64 image and return a Part
+  const getPartFromContent = (text: string, label: string): any[] => {
+    if (!text) return [];
     
-    ${distributionContext}
-
-    ${info.textbookContent ? `
-    NỘI DUNG TỪ SÁCH GIÁO KHOA (SGK) CHUẨN:
-    ${info.textbookContent}
-    ` : ""}
-
-    ${manualContext}
+    // Check if it's a data URL (base64 image or pdf)
+    if (text.startsWith("data:")) {
+      const match = text.match(/^data:([^;]+);base64,(.+)$/);
+      if (match) {
+        return [
+          { text: `\n${label}:\n` },
+          {
+            inlineData: {
+              data: match[2],
+              mimeType: match[1]
+            }
+          }
+        ];
+      }
+    }
     
-    =========================================================
-    NỘI DUNG GIÁO ÁN GỐC CẦN NÂNG CẤP (BIÊN SOẠN LẠI):
-    ${cleanContent}
-    =========================================================
+    // Default to text
+    return [{ text: `\n${label}:\n${text}\n` }];
+  };
+
+  const callModel = async (modelId: string) => {
+    // Build parts array
+    const parts: any[] = [];
     
+    // Reference Data
+    parts.push({ text: `DỮ LIỆU THAM CHIẾU KHUNG NĂNG LỰC SỐ:\n${NLS_FRAMEWORK_DATA}\n` });
+    
+    // Lesson Info
+    parts.push({ text: `THÔNG TIN GIÁO ÁN ĐẦU VÀO:\n- Bộ sách: ${info.textbook}\n- Môn học: ${info.subject}\n- Khối lớp: ${info.grade}\n` });
+    
+    // Distribution Context (Text only for now as it's a complicated prompt)
+    if (distributionContext) {
+      parts.push({ text: distributionContext });
+    } else if (cleanDistribution) {
+       parts.push(...getPartFromContent(cleanDistribution, "NỘI DUNG PPCT"));
+    }
+
+    // Textbook Content
+    if (cleanTextbook) {
+      parts.push(...getPartFromContent(cleanTextbook, "NỘI DUNG TỪ SÁCH GIÁO KHOA (SGK) CHUẨN"));
+    }
+
+    // Manual Context
+    if (manualContext) {
+      parts.push({ text: manualContext });
+    }
+
+    // Main Content (Lesson Plan to be upgraded)
+    parts.push(...getPartFromContent(cleanContent, "NỘI DUNG GIÁO ÁN GỐC CẦN NÂNG CẤP (BIÊN SOẠN LẠI)"));
+
+    // Final Requirements
+    parts.push({ text: `
     YÊU CẦU QUAN TRỌNG:
     - Tuân thủ tuyệt đối SYSTEM_INSTRUCTION về cấu trúc, trình bày và tích hợp NLS.
     - Đảm bảo tính sư phạm chuyên sâu, chi tiết trong từng bước tổ chức thực hiện.
     - Trả về kết quả bằng **Tiếng Việt**.
-  `;
+    `});
 
-  const callModel = async (modelId: string) => {
     const responseStream = await ai.models.generateContentStream({
       model: modelId,
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
-        temperature: 0.1, // Giảm nhiệt độ xuống thấp nhất để đảm bảo AI làm đúng chỉ dẫn cứng
+        temperature: 0.1,
       },
-      contents: userPrompt,
+      contents: [{ role: 'user', parts: parts }],
     });
     
     let text = "";

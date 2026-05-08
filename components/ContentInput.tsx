@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Loader2, CheckCircle2, FileText, Upload, AlertTriangle, FileBarChart } from 'lucide-react';
+import { Loader2, CheckCircle2, FileText, Upload, TriangleAlert, FileBarChart } from 'lucide-react';
 import JSZip from 'jszip';
 
 interface ContentInputProps {
@@ -26,6 +26,7 @@ interface UploadBoxProps {
   type: BoxType;
   hasContent: boolean;
   onFileChange: (e: React.ChangeEvent<HTMLInputElement>, type: BoxType) => void;
+  onClear: (type: BoxType) => void;
 }
 
 const UploadBox: React.FC<UploadBoxProps> = ({ 
@@ -36,11 +37,11 @@ const UploadBox: React.FC<UploadBoxProps> = ({
   isProcessing, 
   type,
   hasContent,
-  onFileChange
+  onFileChange,
+  onClear
 }) => (
   <div 
-    onClick={() => inputRef.current?.click()}
-    className={`group relative overflow-hidden rounded-2xl border-2 border-dashed p-8 transition-all duration-300 cursor-pointer text-center h-full flex flex-col justify-center
+    className={`group relative overflow-hidden rounded-2xl border-2 border-dashed p-8 transition-all duration-300 text-center h-full flex flex-col justify-center
       ${hasContent 
           ? 'border-emerald-300 bg-emerald-50/50 hover:bg-emerald-50' 
           : 'border-slate-300 bg-slate-50 hover:border-indigo-400 hover:bg-indigo-50/30'
@@ -51,11 +52,25 @@ const UploadBox: React.FC<UploadBoxProps> = ({
       type="file" 
       ref={inputRef}
       onChange={(e) => onFileChange(e, type)}
-      accept=".pdf,.docx" 
-      className="hidden" 
+      accept=".pdf,.docx,.doc,.txt,.png,.jpg,.jpeg,.webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,image/*,text/plain" 
+      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" 
+      disabled={isProcessing}
     />
     
-    <div className="flex flex-col items-center justify-center relative z-10">
+    {hasContent && !isProcessing && (
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          onClear(type);
+        }}
+        className="absolute top-3 right-3 p-1.5 bg-rose-100 text-rose-600 rounded-lg hover:bg-rose-200 transition-colors z-30"
+        title="Gỡ bỏ tài liệu này"
+      >
+        <TriangleAlert size={14} />
+      </button>
+    )}
+    
+    <div className="flex flex-col items-center justify-center relative z-10 pointer-events-none">
       {isProcessing ? (
          <div className="p-4 bg-white rounded-full shadow-lg mb-3">
              <Loader2 className="text-indigo-600 animate-spin" size={32} />
@@ -83,7 +98,7 @@ const UploadBox: React.FC<UploadBoxProps> = ({
           <>
               <p className="text-base font-bold text-slate-700">{title}</p>
               <p className="text-xs text-slate-500 mt-2 max-w-[200px] mx-auto leading-relaxed">{subTitle}</p>
-              <div className="mt-4 flex items-center justify-center space-x-2 text-xs text-indigo-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="mt-4 flex items-center justify-center space-x-2 text-xs text-indigo-500 font-medium md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                   <Upload size={12} />
                   <span>Bấm để chọn file</span>
               </div>
@@ -134,41 +149,79 @@ const ContentInput: React.FC<ContentInputProps> = ({
             break;
     }
 
+    if (!setProcessing || !setContent || !setFileName) return;
+
     setProcessing(true);
     setFileName(file.name);
     
     try {
-      const arrayBuffer = await file.arrayBuffer();
       let text = "";
+      const fileNameLower = file.name.toLowerCase();
 
-      if (file.type === "application/pdf" || file.name.endsWith(".pdf")) {
-        text = await extractTextFromPDF(arrayBuffer);
+      // Check file size, if > 30MB warn in console but proceed
+      if (file.size > 30 * 1024 * 1024) {
+        console.warn("File size > 30MB. This might be slow.");
+      }
+
+      if (file.type === "application/pdf" || fileNameLower.endsWith(".pdf")) {
+        const arrayBuffer = await file.arrayBuffer();
+        try {
+          text = await extractTextFromPDF(arrayBuffer);
+        } catch (e) {
+          console.error("PDF text extraction failed:", e);
+          text = "";
+        }
+        
+        // If text is too short, automatically try Vision mode (sending the PDF directly to Gemini)
+        if (!text || text.trim().length < 100) {
+            text = await readFileAsDataURL(file);
+        }
       } else if (
         file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || 
-        file.name.endsWith(".docx")
+        fileNameLower.endsWith(".docx")
       ) {
+        const arrayBuffer = await file.arrayBuffer();
         text = await extractTextFromDOCX(arrayBuffer);
+      } else if (fileNameLower.endsWith(".doc")) {
+        alert("Định dạng .doc (Word cũ) không được hỗ trợ xử lý tự động tốt. Vui lòng 'Save As' sang định dạng .docx trên máy tính để giữ đầy đủ định dạng và nội dung, sau đó tải lên lại.");
+        setFileName(null);
+        setProcessing(false);
+        return;
+      } else if (file.type.startsWith("image/") || /\.(jpg|jpeg|png)$/.test(fileNameLower)) {
+        // Handle images
+        text = await readFileAsDataURL(file);
+      } else if (file.type === "text/plain" || fileNameLower.endsWith(".txt")) {
+        text = await file.text();
       } else {
-        alert("Định dạng file không được hỗ trợ. Vui lòng chọn PDF hoặc DOCX.");
+        alert("Định dạng file không được hỗ trợ. Hệ thống hỗ trợ: Docx, PDF, Ảnh (Jpg, Png), Txt.");
         setFileName(null);
         setProcessing(false);
         return;
       }
 
-      if (!text.trim()) {
-        alert("Không thể đọc được nội dung văn bản từ file này. Có thể file chứa ảnh scan?");
+      if (!text || !text.trim()) {
+        alert("Không thể đọc được nội dung từ file này. Vui lòng kiểm tra lại file hoặc thử định dạng khác.");
         setFileName(null);
+        setContent(""); 
       } else {
         setContent(text);
       }
-
     } catch (error) {
       console.error("Error processing file:", error);
-      alert("Có lỗi xảy ra khi đọc file.");
+      alert("Có lỗi xảy ra khi đọc file. Chi tiết: " + (error instanceof Error ? error.message : String(error)));
       setFileName(null);
     } finally {
       setProcessing(false);
     }
+  };
+
+  const readFileAsDataURL = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
   };
 
   // Preprocess and extraction functions remain the same
@@ -200,11 +253,15 @@ const ContentInput: React.FC<ContentInputProps> = ({
   };
 
   const extractTextFromDOCX = async (arrayBuffer: ArrayBuffer): Promise<string> => {
-    if (typeof mammoth === 'undefined') return "";
+    const mammothLib = (window as any).mammoth;
+    if (!mammothLib) {
+        alert("Lỗi: Thư viện đọc file Word (Mammoth) chưa được tải. Vui lòng kiểm tra kết nối mạng.");
+        return "";
+    }
     try {
         const processedBuffer = await preprocessDOCXMath(arrayBuffer);
-        const result = await mammoth.convertToHtml({ arrayBuffer: processedBuffer });
-        let html = result.value;
+        const result = await mammothLib.convertToHtml({ arrayBuffer: processedBuffer });
+        let html = result.value || "";
         html = html.replace(/<img[^>]*src="data:image\/[^;]+;base64,[^"]+"[^>]*>/g, ' [HÌNH ẢNH ĐÃ LƯỢC BỎ] ');
         return html;
     } catch (e) {
@@ -214,22 +271,51 @@ const ContentInput: React.FC<ContentInputProps> = ({
   };
 
   const extractTextFromPDF = async (arrayBuffer: ArrayBuffer): Promise<string> => {
-    if (typeof pdfjsLib === 'undefined') return "";
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    let fullText = "";
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items.map((item: any) => item.str).join(" ");
-      fullText += pageText + "\n\n";
+    const pdfLib = (window as any).pdfjsLib;
+    if (!pdfLib) {
+        alert("Lỗi: Thư viện đọc file PDF chưa được tải. Vui lòng kiểm tra kết nối mạng.");
+        return "";
     }
-    return fullText;
+    try {
+        const pdf = await pdfLib.getDocument({ data: arrayBuffer }).promise;
+        let fullText = "";
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const textContent = await page.getTextContent();
+          const pageText = textContent.items.map((item: any) => item.str).join(" ");
+          fullText += pageText + "\n\n";
+        }
+        return fullText;
+    } catch (e) {
+        console.error("PDF.js error", e);
+        return "";
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: BoxType) => {
     const file = e.target.files?.[0];
-    if (file) processFile(file, type);
+    if (file) {
+      console.log(`Uploading file for ${type}: ${file.name}`);
+      processFile(file, type);
+    }
     e.target.value = '';
+  };
+
+  const clearContent = (type: BoxType) => {
+    switch(type) {
+      case 'lesson':
+        setLessonContent('');
+        setLessonFileName(null);
+        break;
+      case 'textbook':
+        setTextbookContent('');
+        setTextbookFileName(null);
+        break;
+      case 'distribution':
+        setDistributionContent('');
+        setDistFileName(null);
+        break;
+    }
   };
 
   return (
@@ -246,17 +332,18 @@ const ContentInput: React.FC<ContentInputProps> = ({
         <div className="flex flex-col h-full">
             <UploadBox 
                 title="Giáo án gốc (KHBD)" 
-                subTitle="File giáo án cũ làm tài liệu định hướng (tham khảo 30%)." 
+                subTitle="File giáo án cũ làm tài liệu định hướng (Docx, PDF, Ảnh, Txt)." 
                 inputRef={lessonInputRef}
                 fileName={lessonFileName}
                 isProcessing={processingLesson}
                 type="lesson"
                 hasContent={!!lessonContent}
                 onFileChange={handleFileChange}
+                onClear={clearContent}
             />
              {!lessonContent && (
                 <div className="flex items-center justify-center mt-3 text-rose-500 text-xs font-medium">
-                    <AlertTriangle size={12} className="mr-1.5"/>
+                    <TriangleAlert size={12} className="mr-1.5"/>
                     <span>Bắt buộc</span>
                 </div>
             )}
@@ -266,13 +353,14 @@ const ContentInput: React.FC<ContentInputProps> = ({
         <div className="flex flex-col h-full">
             <UploadBox 
                 title="Tài liệu SGK" 
-                subTitle="File nội dung chuẩn trong SGK để AI làm căn cứ biên soạn lại." 
+                subTitle="File nội dung chuẩn trong SGK để AI làm căn cứ (Docx, PDF, Ảnh, Txt)." 
                 inputRef={textbookInputRef}
                 fileName={textbookFileName}
                 isProcessing={processingTextbook}
                 type="textbook"
                 hasContent={!!textbookContent}
                 onFileChange={handleFileChange}
+                onClear={clearContent}
             />
         </div>
 
@@ -280,13 +368,14 @@ const ContentInput: React.FC<ContentInputProps> = ({
         <div className="flex flex-col h-full">
             <UploadBox 
                 title="Tải lên PPCT" 
-                subTitle="Trích xuất chính xác năng lực theo quy định nhà trường." 
+                subTitle="Trích xuất chính xác năng lực từ PPCT (Docx, PDF, Ảnh, Txt)." 
                 inputRef={distInputRef}
                 fileName={distFileName}
                 isProcessing={processingDist}
                 type="distribution"
                 hasContent={!!distributionContent}
                 onFileChange={handleFileChange}
+                onClear={clearContent}
             />
         </div>
       </div>
@@ -304,7 +393,7 @@ const ContentInput: React.FC<ContentInputProps> = ({
       {/* Cảnh báo khối lượng Upload để tiết kiệm quota */}
       <div className="mt-6 bg-amber-50 border border-amber-200/60 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-3">
           <div className="bg-amber-100 p-2 rounded-full text-amber-600 shrink-0">
-             <AlertTriangle size={18} />
+             <TriangleAlert size={18} />
           </div>
           <div className="text-sm text-amber-800">
              <strong>Lời khuyên để tránh lỗi và tối ưu Quota: </strong>

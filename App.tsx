@@ -6,9 +6,9 @@ import ManualNLSInput from './components/ManualNLSInput';
 import ResultDisplay from './components/ResultDisplay';
 import { Subject, Textbook, ManualNLSEntry } from './types';
 import { generateNLSLessonPlan } from './services/geminiService';
-import { Sparkles, Sliders, ShieldCheck, Zap, Info, Check, Key } from 'lucide-react';
+import { Sparkles, SlidersHorizontal, ShieldCheck, Zap, Info, Check, Key } from 'lucide-react';
 
-// App component for AI-powered Digital Competence Lesson Plan Redesign
+// App component for AI-powered Digital Competence Lesson Plan Redesign (Updated for HMR stability)
 const App: React.FC = () => {
   // State for Form
   const [textbook, setTextbook] = useState<Textbook>(Textbook.KNTT);
@@ -158,7 +158,7 @@ const App: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                <div className="flex items-center">
                 <div className="p-2 bg-slate-100 rounded-lg mr-3">
-                    <Sliders className="text-slate-600" size={20} />
+                    <SlidersHorizontal className="text-slate-600" size={20} />
                 </div>
                 <div>
                     <h3 className="font-bold text-slate-800 text-sm">Cấu hình xử lý</h3>
