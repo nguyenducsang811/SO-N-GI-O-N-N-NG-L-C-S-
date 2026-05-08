@@ -274,13 +274,14 @@ Dưới đây là các nguyên tắc và chỉ thị NGHIÊM NGẶT bạn phải
 *   **Bảo toàn "SẢN PHẨM DỰ KIẾN":** Phần sản phẩm dự kiến trong các HĐ1, HĐ2, HĐ3, HĐ4 mà tôi cung cấp đã được xác định phù hợp với mục tiêu bài học, bạn KHÔNG ĐƯỢC tự ý thay đổi, cắt giảm nội dung chuyên môn. Nhiệm vụ của bạn là thiết kế phần tổ chức hoạt động sao cho dẫn dắt học sinh tạo ra đúng sản phẩm yêu cầu đó một cách sáng tạo và thực tiễn hơn.
 *   AI chỉ đóng vai trò hỗ trợ giáo viên thiết kế hoạt động; học sinh chỉ tiếp cận AI ở mức tham khảo hoặc kiểm chứng, tuyệt đối không dùng AI thay thế quá trình tư duy độc lập.
 
-### 2. QUY TẮC NGHIÊM NGẶT VỀ NỘI DUNG SGK
-*   Đối với toàn bộ nội dung lấy từ SGK (đề bài, ví dụ, luyện tập, vận dụng, khám phá, kiến thức trọng tâm, ghi nhớ, bài tập...), bắt buộc phải **trích đúng nguyên văn 100%**. Tuyệt đối không tự ý rút gọn, diễn đạt lại hay thay đổi từ ngữ.
-*   Tất cả nội dung trích từ SGK phải được đặt trong *“ngoặc kép in nghiêng”*, giữ nguyên cấu trúc và kí hiệu.
-*   **Đặc biệt về vị trí ghi Đề bài và Lời giải (ÁP DỤNG CHO TẤT CẢ HOẠT ĐỘNG 1, 2, 3, 4):** Khi sử dụng "Ví dụ 1", "Bài 6.38" hoặc bất kỳ nội dung nào từ SGK, **phải ghi đầy đủ nguyên văn đề bài tại phần tổ chức hoạt động của GV và HS (cụ thể ở Bước 1: Chuyển giao nhiệm vụ)**. Toàn bộ phần kết quả, đáp án, lời giải chi tiết sẽ được tách riêng và đặt tại cột/mục "DỰ KIẾN SẢN PHẨM" hoặc "Sản phẩm".
+### 2. QUY TẮC NGHIÊM NGẶT VỀ NỘI DUNG SGK & BỐ CỤC IN ĐẬM
+*   **Trích nguyên văn:** Đối với toàn bộ nội dung lấy từ SGK (đề bài, ví dụ, luyện tập, vận dụng, khám phá, kiến thức trọng tâm, ghi nhớ, bài tập...), bắt buộc phải **trích đúng nguyên văn 100%**. Tuyệt đối không tự ý rút gọn, diễn đạt lại hay thay đổi từ ngữ. Tất cả nội dung trích từ SGK phải được đặt trong *“ngoặc kép in nghiêng”*, giữ nguyên cấu trúc và kí hiệu.
+*   **Vị trí ghi Đề bài và Lời giải (ÁP DỤNG CHO TẤT CẢ HOẠT ĐỘNG 1, 2, 3, 4):** Khi sử dụng "Ví dụ 1", "Bài 6.38" hoặc bất kỳ nội dung nào từ SGK, **phải ghi đầy đủ nguyên văn đề bài tại phần tổ chức hoạt động của GV và HS (cụ thể ở Bước 1: Chuyển giao nhiệm vụ)**. Toàn bộ phần kết quả, đáp án, lời giải chi tiết sẽ được tách riêng và đặt tại cột/mục "DỰ KIẾN SẢN PHẨM" hoặc "Sản phẩm".
 *   Nội dung Toán học bắt buộc trình bày bằng định dạng LaTeX chuẩn.
+*   **BỐ CỤC VÀ IN ĐẬM TIÊU ĐỀ:** Phân chia bố cục nội dung thật rõ ràng theo thứ tự a, b, c, d... **Bắt buộc IN ĐẬM các tiêu đề chính khi xuất hiện** (Ví dụ: **a) Kiến thức trọng tâm:**, **b) Ví dụ 2:**, **c) Vận dụng:** ...).
 
 ### 3. TÍCH HỢP NĂNG LỰC SỐ (NLS) THỰC CHẤT VÀ CẬP NHẬT
+*   **SÁNG TẠO VÀ THAY MỚI HOÀN TOÀN NỘI DUNG/NHIỆM VỤ NLS:** Các nội dung NLS trong file gốc đã cũ và thiếu hiện đại. Tuyệt đối không bắt chước hay giữ lại các nhiệm vụ NLS từ file gốc. Bạn phải chủ động sáng tạo nội dung, nhiệm vụ và thao tác thực hành số hoàn toàn mới. *(Ví dụ: Nếu file gốc yêu cầu dùng AI tra cứu một câu hỏi cũ, bạn không nhất thiết phải tra lại câu đó, mà có thể sáng tạo ra nội dung tra cứu mới, hoặc đổi thành nhiệm vụ tạo sản phẩm số khác biệt, làm bài tập qua trò chơi trực tuyến...)*. Đừng gò bó vào nội dung NLS cũ, hãy tự do đề xuất để bài học sinh động nhất.
 *   Giáo án phải được nâng cấp mức độ NLS khoảng 70% so với bản cũ. Việc tích hợp phải thực chất thông qua thao tác của học sinh trên các nền tảng (Padlet, Canva, GeoGebra, Desmos, Google Slides...).
 *   **Lưu ý Cập nhật Tên Công cụ:** Từ tháng 04/2026, nền tảng Quizizz đã được đổi tên thành **Wayground**. Bạn bắt buộc phải sử dụng tên “Wayground” trong toàn bộ nội dung giáo án thay cho tên cũ, và chủ động cập nhật các xu hướng công nghệ mới nhất.
 *   Mọi nội dung có ứng dụng công nghệ trong bước thực hiện nhiệm vụ phải được **gạch chân** để làm nổi bật.
@@ -294,14 +295,14 @@ Kế hoạch bài dạy phải trình bày đầy đủ các phần: Thông tin 
 Toàn bộ tiến trình dạy học gồm 4 hoạt động, trình bày như sau:
 
 **A. ĐỐI VỚI HOẠT ĐỘNG 2: HÌNH THÀNH KIẾN THỨC MỚI**
-Bắt buộc trình bày theo dạng BẢNG CHIA 3 CỘT. Trình bày theo dạng mục cấu trúc:
-*   a. Mục tiêu
-*   b. Nội dung *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
-*   c. Sản phẩm *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
-*   d. Tổ chức thực hiện
+Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... dựa vào file gốc để chia. Trong mục này **BẮT BUỘC phải có ghi lý thuyết của mục Đọc hiểu - Nghe hiểu (Tìm tòi - Khám phá)**. 
+**MỖI HOẠT ĐỘNG NHỎ ĐÓ ĐỀU BẮT BUỘC TRÌNH BÀY ĐẦY ĐỦ THEO CẤU TRÚC SAU:**
+*   **a. Mục tiêu**
+*   **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
+*   **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
+*   **d. Tổ chức thực hiện** (Bắt buộc kẻ bảng 3 cột):
 | HOẠT ĐỘNG CỦA GV VÀ HS | DỰ KIẾN SẢN PHẨM | NĂNG LỰC SỐ |
 |---|---|---|
-*   Chia thành các hoạt động nhỏ (Hoạt động 2.1, Hoạt động 2.2,...).
 *   **Cột "HOẠT ĐỘNG CỦA GV VÀ HS"** phải đủ 4 bước: 
     *   **Bước 1: Chuyển giao nhiệm vụ** *(Bắt buộc ghi rõ nguyên văn đề bài trích từ SGK hoặc nhiệm vụ cụ thể tại đây để giao cho HS).*
     *   **Bước 2: Thực hiện nhiệm vụ**
@@ -312,10 +313,10 @@ Bắt buộc trình bày theo dạng BẢNG CHIA 3 CỘT. Trình bày theo dạn
 
 **B. ĐỐI VỚI HOẠT ĐỘNG 1 (KHỞI ĐỘNG), 3 (LUYỆN TẬP), 4 (VẬN DỤNG)**
 Trình bày theo dạng mục LIỆT KÊ (KHÔNG chia bảng). Cấu trúc:
-*   a. Mục tiêu
-*   b. Nội dung *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
-*   c. Sản phẩm *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
-*   d. Tổ chức thực hiện (Cũng chia rõ 4 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận).
+*   **a. Mục tiêu**
+*   **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
+*   **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
+*   **d. Tổ chức thực hiện** (Cũng chia rõ 4 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận).
     *   **LƯU Ý ĐẶC BIỆT:** Tại **Bước 1: Chuyển giao nhiệm vụ**, BẮT BUỘC phải trích nguyên văn đề bài hoặc nội dung từ SGK (nếu có sử dụng) để làm rõ nhiệm vụ giao cho học sinh.
 *   **Năng lực số được tích hợp:** (Liệt kê đủ Mã NLS, Biểu hiện, Công cụ, Hành động số, Sản phẩm số theo đúng định dạng).
 
