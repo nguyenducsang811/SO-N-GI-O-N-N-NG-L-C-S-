@@ -308,6 +308,7 @@ Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... dựa vào file gốc đ
     *   **Bước 2: Thực hiện nhiệm vụ**
     *   **Bước 3: Báo cáo, thảo luận**
     *   **Bước 4: Kết luận, nhận định**
+*(LƯU Ý: Nếu trong hoạt động nhỏ này tiếp tục có các nhiệm vụ con, thì MỖI nhiệm vụ con đó đều phải chạy đủ 04 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận như trên).*
 *   **Cột "DỰ KIẾN SẢN PHẨM"** CHỈ ghi nội dung kết quả thực hiện: Lời giải chi tiết, đáp án, các bước lập luận, phép biến đổi và nội dung chốt kiến thức quan trọng để học sinh ghi bài. **Tuyệt đối KHÔNG ghi đề bài vào cột này.**
 *   **Cột "NĂNG LỰC SỐ":** Ghi rõ Mã NLS; Biểu hiện; Công cụ số sử dụng; Hành động số cụ thể; Sản phẩm học tập số.
 
@@ -317,7 +318,8 @@ Trình bày theo dạng mục LIỆT KÊ (KHÔNG chia bảng). Cấu trúc:
 *   **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
 *   **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
 *   **d. Tổ chức thực hiện** (Cũng chia rõ 4 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận).
-    *   **LƯU Ý ĐẶC BIỆT:** Tại **Bước 1: Chuyển giao nhiệm vụ**, BẮT BUỘC phải trích nguyên văn đề bài hoặc nội dung từ SGK (nếu có sử dụng) để làm rõ nhiệm vụ giao cho học sinh.
+    *   **LƯU Ý ĐẶC BIỆT 1:** Tại **Bước 1: Chuyển giao nhiệm vụ**, BẮT BUỘC phải trích nguyên văn đề bài hoặc nội dung từ SGK (nếu có sử dụng) để làm rõ nhiệm vụ giao cho học sinh.
+    *   **LƯU Ý ĐẶC BIỆT 2:** Nếu trong các hoạt động này có chia thành các nhiệm vụ nhỏ hơn (Ví dụ: Nhiệm vụ 1, Nhiệm vụ 2,...), thì **MỖI NHIỆM VỤ NHỎ đó cũng bắt buộc phải có đủ 04 bước**: Bước 1: Chuyển giao nhiệm vụ, Bước 2: Thực hiện nhiệm vụ, Bước 3: Báo cáo, thảo luận, Bước 4: Kết luận, nhận định.
 *   **Năng lực số được tích hợp:** (Liệt kê đủ Mã NLS, Biểu hiện, Công cụ, Hành động số, Sản phẩm số theo đúng định dạng).
 
 ### 5. QUY TẮC HÀNH VĂN (TIẾN TRÌNH SIÊU CHI TIẾT NHƯNG CÂU TỪ SÚC TÍCH)
