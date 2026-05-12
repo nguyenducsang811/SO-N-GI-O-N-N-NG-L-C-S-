@@ -26,55 +26,15 @@ const LessonForm: React.FC<LessonFormProps> = ({
   const gradeOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   const primarySubjects = [
-    Subject.TIENG_VIET,
     Subject.TOAN,
-    Subject.NGOAI_NGU_1,
-    Subject.GD_LOI_SONG,
-    Subject.DAO_DUC,
-    Subject.TN_XH,
-    Subject.LS_DL,
-    Subject.KHOA_HOC,
-    Subject.TIN_CONG_NGHE,
-    Subject.GD_THE_CHAT,
-    Subject.NGHE_THUAT,
-    Subject.TIENG_DT_THIEU_SO,
-    Subject.KHAC
   ];
 
   const secondarySubjects = [
-    Subject.NGU_VAN,
     Subject.TOAN,
-    Subject.NGOAI_NGU_1,
-    Subject.GDCD,
-    Subject.KHTN,
-    Subject.LS_DL,
-    Subject.CONG_NGHE,
-    Subject.GD_THE_CHAT,
-    Subject.NGHE_THUAT,
-    Subject.TIN_HOC,
-    Subject.TIENG_DT_THIEU_SO,
-    Subject.NGOAI_NGU_2,
-    Subject.KHAC
   ];
 
   const highSchoolSubjects = [
-    Subject.NGU_VAN,
     Subject.TOAN,
-    Subject.NGOAI_NGU_1,
-    Subject.GD_THE_CHAT,
-    Subject.GD_QP_AN,
-    Subject.GD_KT_PL,
-    Subject.LICH_SU,
-    Subject.DIA_LY,
-    Subject.VAT_LY,
-    Subject.HOA_HOC,
-    Subject.SINH_HOC,
-    Subject.CONG_NGHE,
-    Subject.TIN_HOC,
-    Subject.NGHE_THUAT,
-    Subject.TIENG_DT_THIEU_SO,
-    Subject.NGOAI_NGU_2,
-    Subject.KHAC
   ];
 
   const isPrimary = grade >= 1 && grade <= 5;

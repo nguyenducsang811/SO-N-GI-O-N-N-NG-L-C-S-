@@ -48,24 +48,24 @@ export const generateNLSLessonPlan = async (
   if (info.distributionContent && info.distributionContent.trim().length > 0) {
       distributionContext = `
       =========================================================
-      🚨 QUY TẮC TỐI THƯỢNG (KHI CÓ PPCT - STRICT MODE):
-      Người dùng ĐÃ CUNG CẤP nội dung Phân phối chương trình (PPCT).
+      🚨 QUY TẮC TỐI THƯỢNG (KHI CÓ FILE HỆ THỐNG HOẠT ĐỘNG - STRICT MODE):
+      Người dùng ĐÃ CUNG CẤP nội dung HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TOÁN TÍCH HỢP NĂNG LỰC SỐ (THCS).
       Đây là văn bản pháp quy, bạn phải tuân thủ TUYỆT ĐỐI các yêu cầu sau:
 
       1. Đọc tên bài học trong "NỘI DUNG GIÁO ÁN GỐC".
-      2. Tìm bài học tương ứng trong nội dung PPCT.
-      3. Trích xuất NGUYÊN VĂN, CHÍNH XÁC nội dung cột "Năng lực số" (hoặc YCCĐ năng lực số) của bài học đó.
+      2. Tìm bài học tương ứng trong nội dung Hệ thống hoạt động.
+      3. Trích xuất NGUYÊN VĂN, CHÍNH XÁC nội dung các yêu cầu về "Năng lực số" của bài học đó trong văn bản này.
       4. Đưa nội dung trích xuất đó vào phần Mục tiêu Năng lực số.
       
       ⛔️ CÁC ĐIỀU CẤM (STRICTLY PROHIBITED):
-      - CẤM TUYỆT ĐỐI việc tự ý thêm bất kỳ năng lực số nào khác không có trong PPCT của bài học này (Trừ khi có YÊU CẦU THỦ CÔNG bên dưới).
-      - CẤM tự ý nâng cao hay thay đổi cấp độ nếu PPCT không yêu cầu.
-      - CẤM dùng Khung năng lực số tham chiếu để bịa thêm mục tiêu. CHỈ dùng những gì PPCT ghi.
-      - Nếu cột năng lực số trong PPCT để trống, thì mục tiêu NLS ghi là: "Không có (theo PPCT)".
+      - CẤM TUYỆT ĐỐI việc tự ý thêm bất kỳ năng lực số nào khác không có trong file Hệ thống hoạt động của bài học này (Trừ khi có YÊU CẦU THỦ CÔNG bên dưới).
+      - CẤM tự ý nâng cao hay thay đổi cấp độ nếu tài liệu không yêu cầu.
+      - CẤM dùng Khung năng lực số tham chiếu để bịa thêm mục tiêu. CHỈ dùng những gì văn bản Hệ thống hoạt động ghi.
+      - Nếu mục tiêu năng lực số trong tài liệu này để trống, thì mục tiêu NLS ghi là: "Không có (theo tài liệu Hệ thống hoạt động)".
 
-      Đánh dấu mục tiêu này bằng dòng chữ: "(Nội dung trích xuất nguyên văn từ PPCT)".
+      Đánh dấu mục tiêu này bằng dòng chữ: "(Nội dung trích xuất nguyên văn từ Hệ thống hoạt động tích hợp NLS)".
 
-      NỘI DUNG PPCT:
+      NỘI DUNG HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TÍCH HỢP NLS:
       ${cleanDistribution}
       =========================================================
       `;
@@ -125,7 +125,7 @@ export const generateNLSLessonPlan = async (
     if (distributionContext) {
       parts.push({ text: distributionContext });
     } else if (cleanDistribution) {
-       parts.push(...getPartFromContent(cleanDistribution, "NỘI DUNG PPCT"));
+       parts.push(...getPartFromContent(cleanDistribution, "NỘI DUNG HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TÍCH HỢP NLS"));
     }
 
     // Textbook Content

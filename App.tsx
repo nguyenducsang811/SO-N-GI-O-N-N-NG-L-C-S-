@@ -12,7 +12,7 @@ import { Sparkles, SlidersHorizontal, ShieldCheck, Zap, Info, Check, Key } from 
 const App: React.FC = () => {
   // State for Form
   const [textbook, setTextbook] = useState<Textbook>(Textbook.KNTT);
-  const [subject, setSubject] = useState<Subject>(Subject.TIN_HOC);
+  const [subject, setSubject] = useState<Subject>(Subject.TOAN);
   const [grade, setGrade] = useState<number>(6);
   
   // Content States

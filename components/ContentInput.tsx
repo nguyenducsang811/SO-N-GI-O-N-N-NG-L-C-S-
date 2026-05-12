@@ -364,11 +364,11 @@ const ContentInput: React.FC<ContentInputProps> = ({
             />
         </div>
 
-        {/* Ô Upload PPCT */}
+        {/* Ô Upload Hệ thống hoạt động */}
         <div className="flex flex-col h-full">
             <UploadBox 
-                title="Tải lên PPCT" 
-                subTitle="Trích xuất chính xác năng lực từ PPCT (Docx, PDF, Ảnh, Txt)." 
+                title="HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TOÁN TÍCH HỢP NĂNG LỰC SỐ (THCS)" 
+                subTitle="Trích xuất chính xác năng lực từ hệ thống hoạt động tích hợp NLS (Docx, PDF, Ảnh, Txt)." 
                 inputRef={distInputRef}
                 fileName={distFileName}
                 isProcessing={processingDist}
