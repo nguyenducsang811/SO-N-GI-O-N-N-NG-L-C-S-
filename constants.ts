@@ -330,6 +330,7 @@ Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... dựa vào file gốc đ
 *   **d. Tổ chức thực hiện** (Bắt buộc kẻ bảng 3 cột):
 | HOẠT ĐỘNG CỦA GV VÀ HS | DỰ KIẾN SẢN PHẨM | NĂNG LỰC SỐ |
 |---|---|---|
+* **QUY ĐỊNH CẤM "BẢNG LỒNG BẢNG": TUYỆT ĐỐI KHÔNG SỬ DỤNG định dạng bảng Markdown (kí hiệu \`|\`) lồng bên trong các ô của bảng 3 cột này để tránh lỗi hiển thị. Nếu cần trình bày bảng biểu Toán học/dữ liệu vào cột, BẮT BUỘC phải dùng định dạng LaTeX \`\\begin{array}{|c|c|}...\\end{array}\` hoặc sử dụng chỉ thị [Chèn hình ảnh bảng... tại đây].**
 *   **Cột "HOẠT ĐỘNG CỦA GV VÀ HS"** phải đủ 4 bước: 
     *   **Bước 1: Chuyển giao nhiệm vụ** *(Bắt buộc ghi rõ nguyên văn đề bài trích từ SGK hoặc nhiệm vụ cụ thể tại đây để giao cho HS).*
     *   **Bước 2: Thực hiện nhiệm vụ**
