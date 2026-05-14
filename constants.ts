@@ -319,20 +319,10 @@ Bắt buộc viết theo khung sườn dưới đây. Các phẩm chất và nă
 - [Liệt kê SGK, dụng cụ học tập, máy tính cầm tay, thiết bị di động/máy tính bảng...]
 
 **PHẦN TIẾN TRÌNH DẠY HỌC:**
+Toàn bộ tiến trình dạy học gồm 4 hoạt động (1. Khởi động, 2. Hình thành kiến thức mới, 3. Luyện tập, 4. Vận dụng).
+**LƯU Ý ĐẶC BIỆT: TẤT CẢ CÁC HOẠT ĐỘNG 1, 2, 3, 4 ĐỀU BẮT BUỘC TRÌNH BÀY DƯỚI DẠNG BẢNG 3 CỘT.** 
+*(Riêng đối với Hoạt động 2, sẽ chia thành nhiều hoạt động nhỏ 2.1, 2.2... dựa vào file gốc và BẮT BUỘC phải có ghi lý thuyết của mục Đọc hiểu - Nghe hiểu, Tìm tòi - Khám phá).*
 
-**A. ĐỐI VỚI HOẠT ĐỘNG 1 (KHỞI ĐỘNG)**
-Trình bày theo dạng mục LIỆT KÊ (KHÔNG chia bảng). Cấu trúc:
-* **a. Mục tiêu**
-* **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
-* **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
-* **d. Tổ chức thực hiện** (Cũng chia rõ 4 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận).
-    * **LƯU Ý ĐẶC BIỆT 1:** Tuyệt đối **KHÔNG sử dụng dấu gạch ngang (-)** hay bất kỳ ký hiệu đầu dòng nào trước các tiêu đề **Bước 1**, **Bước 2**, **Bước 3**, **Bước 4**. Trình bày sát lề và in đậm chúng.
-    * **LƯU Ý ĐẶC BIỆT 2:** Tại **Bước 1: Chuyển giao nhiệm vụ**, BẮT BUỘC phải trích nguyên văn đề bài hoặc nội dung từ SGK (nếu có sử dụng) để làm rõ nhiệm vụ giao cho học sinh.
-    * **LƯU Ý ĐẶC BIỆT 3:** Nếu trong các hoạt động này có chia thành các nhiệm vụ nhỏ hơn (Ví dụ: Nhiệm vụ 1, Nhiệm vụ 2,...), thì **MỖI NHIỆM VỤ NHỎ đó cũng bắt buộc phải có đủ 04 bước**: Bước 1: Chuyển giao nhiệm vụ, Bước 2: Thực hiện nhiệm vụ, Bước 3: Báo cáo, thảo luận, Bước 4: Kết luận, nhận định (và vẫn không có dấu "-" phía trước các tiêu đề bước này).
-* **Năng lực số được tích hợp:** (Liệt kê đủ Mã NLS, Biểu hiện, Công cụ, Hành động số, Sản phẩm số theo đúng định dạng).
-
-**B. ĐỐI VỚI HOẠT ĐỘNG 2 (HÌNH THÀNH KIẾN THỨC MỚI), HOẠT ĐỘNG 3 (LUYỆN TẬP), HOẠT ĐỘNG 4 (VẬN DỤNG)**
-Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... (ở HĐ2) hoặc Bài 1, Bài 2,... (ở HĐ3, HĐ4) dựa vào file gốc để chia. Trong HĐ2 **BẮT BUỘC phải có ghi lý thuyết của mục Đọc hiểu - Nghe hiểu (Tìm tòi - Khám phá)**. 
 **MỖI HOẠT ĐỘNG NHỎ HOẶC BÀI TẬP ĐÓ ĐỀU BẮT BUỘC TRÌNH BÀY ĐẦY ĐỦ THEO CẤU TRÚC SAU:**
 *   **a. Mục tiêu**
 *   **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
