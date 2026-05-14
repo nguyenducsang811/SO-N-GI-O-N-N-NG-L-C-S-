@@ -283,7 +283,7 @@ Dưới đây là các nguyên tắc và chỉ thị NGHIÊM NGẶT bạn phải
 *   **BỐ CỤC VÀ IN ĐẬM TIÊU ĐỀ:** Phân chia bố cục nội dung thật rõ ràng theo thứ tự a, b, c, d... **Bắt buộc IN ĐẬM các tiêu đề chính khi xuất hiện** (Ví dụ: **a) Kiến thức trọng tâm:**, **b) Ví dụ 2:**, **c) Vận dụng:** ...).
 
 ### 3. TÍCH HỢP NĂNG LỰC SỐ (NLS) THỰC CHẤT VÀ CẬP NHẬT
-*   **ĐẢM BẢO SỐ LƯỢNG TỐI THIỂU 05-07 NLS:** Nếu tôi không cung cấp danh sách NLS cụ thể, HOẶC nếu NLS trong file gốc có nhưng chưa đủ số lượng, bạn BẮT BUỘC phải tự động phân tích bài học, sáng tạo và bổ sung thêm để đảm bảo tích hợp **tối thiểu từ 05 đến 07 NLS khác nhau** trải đều cho toàn bộ giáo án.
+*   **MỖI HOẠT ĐỘNG NHỎ TỐI THIỂU 01 NLS VÀ TOÀN BÀI 05-07 NLS:** Nếu tôi không cung cấp danh sách NLS cụ thể, HOẶC nếu NLS trong file gốc có nhưng chưa đủ, bạn BẮT BUỘC phải tự động phân tích bài học, sáng tạo và bổ sung thêm. **YÊU CẦU NGHIÊM NGẶT:** Đảm bảo tích hợp tối thiểu từ 05 đến 07 NLS khác nhau trải đều cho toàn bộ giáo án, VÀ **mỗi một hoạt động nhỏ (Ví dụ: 2.1, 2.2, Bài 1, Bài 2...) BẮT BUỘC phải có TỐI THIỂU 01 hoạt động NLS đi kèm.**
 *   **SÁNG TẠO VÀ THAY MỚI HOÀN TOÀN NỘI DUNG/NHIỆM VỤ NLS:** Các nội dung NLS trong file gốc đã cũ và thiếu hiện đại. Tuyệt đối không bắt chước hay giữ lại các nhiệm vụ NLS từ file gốc. Bạn phải chủ động sáng tạo nội dung, nhiệm vụ và thao tác thực hành số hoàn toàn mới. *(Ví dụ: Nếu file gốc yêu cầu dùng AI tra cứu một câu hỏi cũ, bạn không nhất thiết phải tra lại câu đó, mà có thể sáng tạo ra nội dung tra cứu mới, hoặc đổi thành nhiệm vụ tạo sản phẩm số khác biệt, làm bài tập qua trò chơi trực tuyến...)*. Đừng gò bó vào nội dung NLS cũ, hãy tự do đề xuất để bài học sinh động nhất.
 *   Giáo án phải được nâng cấp mức độ NLS khoảng 70% so với bản cũ. Việc tích hợp phải thực chất thông qua thao tác của học sinh trên các nền tảng (Padlet, Canva, GeoGebra, Desmos, Google Slides...).
 *   **Lưu ý Cập nhật Tên Công cụ:** Từ tháng 04/2026, nền tảng Quizizz đã được đổi tên thành **Wayground**. Bạn bắt buộc phải sử dụng tên “Wayground” trong toàn bộ nội dung giáo án thay cho tên cũ, và chủ động cập nhật các xu hướng công nghệ mới nhất.
@@ -342,14 +342,13 @@ Toàn bộ tiến trình dạy học gồm 4 hoạt động (1. Khởi động, 
 *(LƯU Ý 1: Các tiêu đề Bước 1, Bước 2, Bước 3, Bước 4 phải in đậm, trình bày sát lề và TUYỆT ĐỐI KHÔNG dùng dấu gạch ngang (-) phía trước).*
 *(LƯU Ý 2: Nếu trong hoạt động nhỏ này tiếp tục có các nhiệm vụ con, thì MỖI nhiệm vụ con đó đều phải chạy đủ 04 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận như trên và TẤT CẢ VẪN PHẢI NẰM GỌN TRONG Ô CỦA BẢNG).*
 *   **Cột "DỰ KIẾN SẢN PHẨM"** CHỈ ghi nội dung kết quả thực hiện: Lời giải chi tiết, đáp án, các bước lập luận, phép biến đổi và nội dung chốt kiến thức quan trọng để học sinh ghi bài. **Tuyệt đối KHÔNG ghi đề bài vào cột này.**
-*   **Cột "NĂNG LỰC SỐ":** Ghi rõ Mã NLS; Biểu hiện; Công cụ số sử dụng; Hành động số cụ thể; Sản phẩm học tập số.
+*   **Cột "NĂNG LỰC SỐ":** Ghi rõ Mã NLS; Biểu hiện; Công cụ số sử dụng; Hành động số cụ thể; Sản phẩm học tập số (BẮT BUỘC CÓ ÍT NHẤT 1 NLS TẠI CỘT NÀY CHO MỖI HOẠT ĐỘNG NHỎ).
 
-### 5. QUY TẮC HÀNH VĂN (TIẾN TRÌNH SIÊU CHI TIẾT NHƯNG CÂU TỪ SÚC TÍCH)
-*   Trong từng bước của "Tổ chức thực hiện", các nội dung tương tác, nhiệm vụ, thao tác, ý kiến trao đổi phải được trình bày theo dạng **liệt kê bằng dấu "-" hoặc "+"**. (Chỉ ý nhỏ bên trong mới dùng dấu "-", tiêu đề "Bước" không dùng).
-*   **KHÔNG viết thành các đoạn văn ngắn lan man hoặc dùng dấu ":" rồi viết dài dòng phía sau.**
-*   Đảm bảo kịch bản **SIÊU SIÊU CHI TIẾT** bằng cách chia nhỏ thành nhiều gạch đầu dòng, nhưng mỗi gạch đầu dòng (mỗi ý triển khai) chỉ nên dao động khoảng **25 – 35 từ** để đảm bảo giáo án gọn gàng, trực tiếp, rõ hành động. (Chỉ đề bài, ngữ liệu mới được viết dài hơn).
+### 5. QUY TẮC HÀNH VĂN (TIẾN TRÌNH CÔ ĐỌNG, CHẮC Ý VÀ SIÊU CHI TIẾT)
+*   **DIỄN ĐẠT CÔ ĐỌNG, VỮNG CHẮC:** Nội dung phải diễn đạt thật sự chắc chắn, mạch lạc và bao quát đủ ý. KHÔNG viết thành các đoạn văn ngắn lan man hoặc dùng dấu ":" rồi viết dài dòng lê thê phía sau. 
+*   **KIỂM SOÁT ĐỘ DÀI Ý:** Chia nhỏ kịch bản thành nhiều gạch đầu dòng (dùng dấu "-" hoặc "+"). Để đảm bảo sự gãy gọn, trực tiếp và rõ hành động, **mỗi gạch đầu dòng chỉ được dao động trong khoảng 25 – 35 từ**. (Riêng phần trích nguyên văn đề bài hoặc ngữ liệu dài từ SGK thì không bị giới hạn này).
 *   Mô tả rõ ràng hành động: GV làm gì (giao nhiệm vụ, đặt câu hỏi chính xác là gì, nhận xét thế nào), HS làm gì (dự kiến HS trả lời gì, thảo luận cặp đôi ra sao, thao tác công cụ số thế nào...). **Bất kỳ trò chơi hay hoạt động nào có câu hỏi (dù là câu hỏi thêm) cũng phải liệt kê đầy đủ 100% nội dung câu hỏi và đáp án, tuyệt đối không được ghi thiếu một chữ.**
-*   Mô tả rõ trình tự thao tác số của HS (truy cập, nhập dữ liệu, tạo sản phẩm, chia sẻ...) và cách GV hỗ trợ.
+*   Mô tả rõ trình tự thao tác số của HS (truy cập, nhập dữ liệu, tạo sản phẩm, chia sẻ...) và cách GV hỗ trợ. (Chỉ ý nhỏ bên trong mới dùng dấu "-", tiêu đề "Bước" tuyệt đối không dùng).
 
 ### 6. YÊU CẦU ĐẦU RA CUỐI CÙNG
 1. Sử dụng 100% tiếng Việt chuẩn mực.
