@@ -38,10 +38,15 @@ export const generateNLSLessonPlan = async (
   const cleanDistribution = optimizeTextForTokenSaving(info.distributionContent || "");
   const cleanTextbook = optimizeTextForTokenSaving(info.textbookContent || "");
 
-  // Cấu hình Model: Chuỗi fallback theo yêu cầu
+  // Cấu hình Model: Chuỗi fallback theo yêu cầu để dự phòng khi hết quota
   const models = [
     "gemini-3.1-pro-preview",
-    "gemini-3.1-flash-lite"
+    "gemini-2.5-pro-preview",
+    "gemini-3-flash-preview",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash-preview",
+    "gemini-1.5-pro",
+    "gemini-1.5-flash"
   ];
   
   let distributionContext = "";
@@ -191,6 +196,7 @@ export const generateNLSLessonPlan = async (
 
   try {
     let lastError: any = null;
+    let quotaErrorOccurred = false;
     
     for (const modelId of models) {
         try {
@@ -199,14 +205,25 @@ export const generateNLSLessonPlan = async (
             if (!text) throw new Error("API trả về kết quả rỗng.");
             return text;
         } catch (error: any) {
-            console.warn(`Model ${modelId} gặp sự cố hoặc hết quota.`, error);
+            console.warn(`Model ${modelId} gặp lỗi:`, error);
             lastError = error;
-            // Continue to the next model in the array
+            
+            // Nếu lỗi là 429 (Too many requests) hoặc liên quan đến Quota
+            if (error.message?.includes("429") || error.message?.toLowerCase().includes("quota") || error.message?.toLowerCase().includes("exhausted")) {
+                quotaErrorOccurred = true;
+            }
+            // Tiếp tục thử model tiếp theo
         }
     }
     
-    // If we reach here, all models failed
-    throw new Error("Tất cả các mô hình AI đều đã hết quota hoặc gặp sự cố. Vui lòng thử lại vào ngày mai.");
+    // Nếu tất cả các model đều thất bại
+    if (quotaErrorOccurred) {
+        throw new Error("Tài khoản của bạn đã hết hạn mức (quota) Gemini miễn phí trong hôm nay. Vui lòng thử lại sau vài giờ hoặc ngày mai.");
+    } else if (lastError?.message?.includes("API_KEY_INVALID") || lastError?.message?.includes("400")) {
+        throw new Error("Google Gemini API Key không hợp lệ. Vui lòng kiểm tra lại mã API của bạn.");
+    }
+    
+    throw new Error(lastError?.message || "Tất cả các mô hình AI đều gặp sự cố kỹ thuật. Vui lòng thử lại sau.");
   } catch (error: any) {
     console.error("Gemini API Error (All models failed):", error);
     throw new Error(error.message || "Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại sau.");
