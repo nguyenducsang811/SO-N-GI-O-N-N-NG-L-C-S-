@@ -121,14 +121,14 @@ export const generateNLSLessonPlan = async (
     const parts: any[] = [];
     
     // Reference Data
-    parts.push({ text: `DỮ LIỆU THAM CHIẾU KHUNG NĂNG LỰC SỐ:\n${NLS_FRAMEWORK_DATA}\n` });
+    parts.push({ text: `DỮ LIỆU THAM CHIẾU KHUNG NĂNG LỰC SỐ:\n${String(NLS_FRAMEWORK_DATA)}\n` });
     
     // Lesson Info
-    parts.push({ text: `THÔNG TIN GIÁO ÁN ĐẦU VÀO:\n- Bộ sách: ${info.textbook}\n- Môn học: ${info.subject}\n- Khối lớp: ${info.grade}\n` });
+    parts.push({ text: `THÔNG TIN GIÁO ÁN ĐẦU VÀO:\n- Bộ sách: ${String(info.textbook)}\n- Môn học: ${String(info.subject)}\n- Khối lớp: ${String(info.grade)}\n` });
     
     // Distribution Context (Text only for now as it's a complicated prompt)
     if (distributionContext) {
-      parts.push({ text: distributionContext });
+      parts.push({ text: String(distributionContext) });
     } else if (cleanDistribution) {
        parts.push(...getPartFromContent(cleanDistribution, "NỘI DUNG HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TÍCH HỢP NLS"));
     }
@@ -140,7 +140,7 @@ export const generateNLSLessonPlan = async (
 
     // Manual Context
     if (manualContext) {
-      parts.push({ text: manualContext });
+      parts.push({ text: String(manualContext) });
     }
 
     // Main Content (Lesson Plan to be upgraded)
@@ -157,7 +157,7 @@ export const generateNLSLessonPlan = async (
     const responseStream = await ai.models.generateContentStream({
       model: modelId,
       config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
+        systemInstruction: { parts: [{ text: String(SYSTEM_INSTRUCTION) }] },
         temperature: 0.1,
       },
       contents: [{ role: 'user', parts: parts }],

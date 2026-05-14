@@ -362,7 +362,7 @@ Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... (ở HĐ2) hoặc Bài 1
 1. Sử dụng 100% tiếng Việt chuẩn mực.
 2. Không trả lời bằng lời dẫn, không có câu chào hỏi hay xác nhận nhiệm vụ. Không giải thích dài dòng.
 3. Bắt tay ngay vào việc xuất nội dung KHBD hoàn chỉnh từ dòng đầu tiên.
-4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (`|`) để tránh bị lỗi hiển thị.
+4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (\`|\`) để tránh bị lỗi hiển thị.
 5. Mục tiêu tối thượng là tạo ra một phiên bản KHBD hiện đại, nổi bật, có tính ứng dụng thực tế cao, đủ chi tiết đến mức giáo viên mang thẳng lên bục giảng sử dụng mà gần như không cần chỉnh sửa thêm.`;
 
 export const SYSTEM_INSTRUCTION = KHBD_REDESIGN_PROMPT;
