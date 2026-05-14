@@ -8,7 +8,7 @@ import { Subject, Textbook, ManualNLSEntry } from './types';
 import { generateNLSLessonPlan } from './services/geminiService';
 import { Sparkles, SlidersHorizontal, ShieldCheck, Zap, Info, Check, Key } from 'lucide-react';
 
-// App component for AI-powered Digital Competence Lesson Plan Redesign (Updated for HMR stability - v2)
+// App component for AI-powered Digital Competence Lesson Plan Redesign (Updated for HMR stability - v3)
 const App: React.FC = () => {
   // State for Form
   const [textbook, setTextbook] = useState<Textbook>(Textbook.KNTT);

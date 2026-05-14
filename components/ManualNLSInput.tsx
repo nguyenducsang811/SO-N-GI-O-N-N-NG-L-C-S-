@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// Triggering reload for HMR stability
 import { Plus, Trash2, Target } from 'lucide-react';
 import { NLS_COMPONENT_OPTIONS, NLS_LEVEL_DETAILS } from '../constants';
 import { ManualNLSEntry } from '../types';

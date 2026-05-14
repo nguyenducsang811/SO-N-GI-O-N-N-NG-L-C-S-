@@ -319,7 +319,6 @@ Bắt buộc viết theo khung sườn dưới đây. Các phẩm chất và nă
 - [Liệt kê SGK, dụng cụ học tập, máy tính cầm tay, thiết bị di động/máy tính bảng...]
 
 **PHẦN TIẾN TRÌNH DẠY HỌC:**
-Toàn bộ tiến trình dạy học gồm 4 hoạt động, trình bày như sau:
 
 **A. ĐỐI VỚI HOẠT ĐỘNG 1 (KHỞI ĐỘNG)**
 Trình bày theo dạng mục LIỆT KÊ (KHÔNG chia bảng). Cấu trúc:
@@ -333,21 +332,22 @@ Trình bày theo dạng mục LIỆT KÊ (KHÔNG chia bảng). Cấu trúc:
 * **Năng lực số được tích hợp:** (Liệt kê đủ Mã NLS, Biểu hiện, Công cụ, Hành động số, Sản phẩm số theo đúng định dạng).
 
 **B. ĐỐI VỚI HOẠT ĐỘNG 2 (HÌNH THÀNH KIẾN THỨC MỚI), HOẠT ĐỘNG 3 (LUYỆN TẬP), HOẠT ĐỘNG 4 (VẬN DỤNG)**
-Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... (ở HĐ2) hoặc Bài 1, Bài 2,... (ở HĐ3, HĐ4) dựa vào file gốc để chia. Đặc biệt trong HĐ2 **BẮT BUỘC phải có ghi lý thuyết của mục Đọc hiểu - Nghe hiểu (Tìm tòi - Khám phá)**. 
+Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... (ở HĐ2) hoặc Bài 1, Bài 2,... (ở HĐ3, HĐ4) dựa vào file gốc để chia. Trong HĐ2 **BẮT BUỘC phải có ghi lý thuyết của mục Đọc hiểu - Nghe hiểu (Tìm tòi - Khám phá)**. 
 **MỖI HOẠT ĐỘNG NHỎ HOẶC BÀI TẬP ĐÓ ĐỀU BẮT BUỘC TRÌNH BÀY ĐẦY ĐỦ THEO CẤU TRÚC SAU:**
 *   **a. Mục tiêu**
 *   **b. Nội dung** *(Mô tả ngắn gọn yêu cầu hoặc nhiệm vụ chung).*
 *   **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
-*   **d. Tổ chức thực hiện** (Bắt buộc kẻ bảng 3 cột):
+*   **d. Tổ chức thực hiện** (Bắt buộc kẻ bảng 3 cột).
+**LƯU Ý CỰC KỲ QUAN TRỌNG ĐỂ XUẤT FILE KHÔNG BỊ LỖI:** Trong Markdown, để các Bước không bị văng ra khỏi bảng thành dạng liệt kê, bạn BẮT BUỘC phải đặt toàn bộ nội dung của cột 1 trên **CÙNG MỘT HÀNG** của mã nguồn, và sử dụng thẻ \`<br>\` để xuống dòng bên trong ô. TUYỆT ĐỐI KHÔNG nhấn phím Enter (tạo dòng mới) bên trong cột "HOẠT ĐỘNG CỦA GV VÀ HS".
 | HOẠT ĐỘNG CỦA GV VÀ HS | DỰ KIẾN SẢN PHẨM | NĂNG LỰC SỐ |
 |---|---|---|
 * **QUY ĐỊNH CẤM "BẢNG LỒNG BẢNG": TUYỆT ĐỐI KHÔNG SỬ DỤNG định dạng bảng Markdown (kí hiệu \`|\`) lồng bên trong các ô của bảng 3 cột này để tránh lỗi hiển thị. Nếu cần trình bày bảng biểu Toán học/dữ liệu vào cột, BẮT BUỘC phải dùng định dạng LaTeX \`\\begin{array}{|c|c|}...\\end{array}\` hoặc sử dụng chỉ thị [Chèn hình ảnh bảng... tại đây].**
-*   **Cột "HOẠT ĐỘNG CỦA GV VÀ HS"** phải đủ 4 bước: 
+*   **Cột "HOẠT ĐỘNG CỦA GV VÀ HS"** phải đủ 4 bước (Nhớ dùng \`<br>\` để cách các bước, không gõ Enter): 
     *   **Bước 1: Chuyển giao nhiệm vụ** *(Bắt buộc ghi rõ nguyên văn đề bài trích từ SGK hoặc nhiệm vụ cụ thể tại đây để giao cho HS).*
     *   **Bước 2: Thực hiện nhiệm vụ**
     *   **Bước 3: Báo cáo, thảo luận**
     *   **Bước 4: Kết luận, nhận định**
-*(LƯU Ý: Nếu trong hoạt động nhỏ này tiếp tục có các nhiệm vụ con, thì MỖI nhiệm vụ con đó đều phải chạy đủ 04 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận như trên).*
+*(LƯU Ý: Nếu trong hoạt động nhỏ này tiếp tục có các nhiệm vụ con, thì MỖI nhiệm vụ con đó đều phải chạy đủ 04 bước: Chuyển giao, Thực hiện, Báo cáo, Kết luận như trên và TẤT CẢ VẪN PHẢI NẰM GỌN TRONG Ô CỦA BẢNG).*
 *   **Cột "DỰ KIẾN SẢN PHẨM"** CHỈ ghi nội dung kết quả thực hiện: Lời giải chi tiết, đáp án, các bước lập luận, phép biến đổi và nội dung chốt kiến thức quan trọng để học sinh ghi bài. **Tuyệt đối KHÔNG ghi đề bài vào cột này.**
 *   **Cột "NĂNG LỰC SỐ":** Ghi rõ Mã NLS; Biểu hiện; Công cụ số sử dụng; Hành động số cụ thể; Sản phẩm học tập số.
 
@@ -362,7 +362,7 @@ Sẽ có nhiều Hoạt động nhỏ như 2.1, 2.2,... (ở HĐ2) hoặc Bài 1
 1. Sử dụng 100% tiếng Việt chuẩn mực.
 2. Không trả lời bằng lời dẫn, không có câu chào hỏi hay xác nhận nhiệm vụ. Không giải thích dài dòng.
 3. Bắt tay ngay vào việc xuất nội dung KHBD hoàn chỉnh từ dòng đầu tiên.
-4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (\`|\`) để tránh bị lỗi hiển thị.
+4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (\`|\`) và lệnh \`<br>\` để tránh bị lỗi hiển thị khi xuất sang Word.
 5. Mục tiêu tối thượng là tạo ra một phiên bản KHBD hiện đại, nổi bật, có tính ứng dụng thực tế cao, đủ chi tiết đến mức giáo viên mang thẳng lên bục giảng sử dụng mà gần như không cần chỉnh sửa thêm.`;
 
 export const SYSTEM_INSTRUCTION = KHBD_REDESIGN_PROMPT;
