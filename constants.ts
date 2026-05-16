@@ -322,7 +322,7 @@ Toàn bộ tiến trình dạy học gồm 4 hoạt động chính (1. Khởi đ
 * **c. Sản phẩm** *(CHỈ ghi đáp án, lời giải, kết quả thực hiện. Tuyệt đối không chép đề bài ở đây).*
 * **d. Tổ chức thực hiện** (Bắt buộc kẻ bảng 3 cột).
 **LƯU Ý CỰC KỲ QUAN TRỌNG ĐỂ XUẤT FILE KHÔNG BỊ LỖI VÀ TRÌNH BÀY ĐẸP MẮT:** 1. Trong Markdown, để các Bước không bị văng ra khỏi bảng thành dạng liệt kê, bạn BẮT BUỘC phải đặt toàn bộ nội dung của mỗi cột trên **CÙNG MỘT HÀNG** của mã nguồn, và sử dụng thẻ \`<br>\` để xuống dòng bên trong ô. TUYỆT ĐỐI KHÔNG nhấn phím Enter (tạo dòng mới) bên trong các ô của bảng.
-2. **CHỦ ĐỘNG NGẮT DÒNG (\`<br>\`):** Cột "HOẠT ĐỘNG" và "SẢN PHẨM" chỉ rộng 8cm. Bạn phải suy nghĩ việc ngắt dòng sao cho hợp lý. Đặc biệt, các ý riêng biệt (ví dụ: đề bài có câu a, câu b, câu c) thì **BẮT BUỘC phải dùng \`<br>\` để xuống dòng** cho từng câu, từng ý. Tuyệt đối không viết liền mạch thành một đoạn khối chữ dài thò lò gây xấu và lỗi cột.
+2. **CHỦ ĐỘNG NGẮT DÒNG (\`<br>\`):** Cột "HOẠT ĐỘNG" và "SẢN PHẨM" chỉ rộng 8cm. Bạn phải suy nghĩ việc ngắt dòng sao cho hợp lý. Đặc biệt, đối với **các bài tập trắc nghiệm, trò chơi có đáp án (A, B, C, D) hoặc bài tự luận có nhiều ý (câu a, câu b, câu c)**, thì **BẮT BUỘC phải dùng \`<br>\` để tách từng đáp án, từng ý xuống dòng riêng biệt**. Tuyệt đối không viết liền mạch thành một đoạn khối chữ dài thò lò gây xấu và vỡ cột.
 | HOẠT ĐỘNG CỦA GV VÀ HS | DỰ KIẾN SẢN PHẨM | NĂNG LỰC SỐ |
 |---|---|---|
 * **QUY ĐỊNH CẤM "BẢNG LỒNG BẢNG": TUYỆT ĐỐI KHÔNG SỬ DỤNG định dạng bảng Markdown (kí hiệu \`|\`) lồng bên trong các ô của bảng 3 cột này để tránh lỗi hiển thị. Nếu cần trình bày bảng biểu Toán học/dữ liệu vào cột, BẮT BUỘC phải dùng định dạng LaTeX \`\\begin{array}{|c|c|}...\\end{array}\` hoặc sử dụng chỉ thị [Chèn hình ảnh bảng... tại đây].**
@@ -348,6 +348,7 @@ Toàn bộ tiến trình dạy học gồm 4 hoạt động chính (1. Khởi đ
 3. Bắt tay ngay vào việc xuất nội dung KHBD hoàn chỉnh từ dòng đầu tiên.
 4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (\`|\`) và lệnh \`<br>\` để tránh bị lỗi hiển thị khi xuất sang Word.
 5. Mục tiêu tối thượng là tạo ra một phiên bản KHBD hiện đại, nổi bật, có tính ứng dụng thực tế cao, đủ chi tiết đến mức giáo viên mang thẳng lên bục giảng sử dụng mà gần như không cần chỉnh sửa thêm.`;
+
 
 export const SYSTEM_INSTRUCTION = KHBD_REDESIGN_PROMPT;
 
