@@ -269,29 +269,34 @@ Dưới đây là các nguyên tắc và chỉ thị NGHIÊM NGẶT bạn phải
 ### 1. NGUYÊN TẮC "AI REDESIGN+" VÀ MỨC ĐỘ SIÊU SIÊU CHI TIẾT
 * Nhiệm vụ của bạn không phải giữ nguyên giáo án cũ rồi chỉ chèn thêm vài nội dung công nghệ mang tính hình thức. Bạn phải phân tích toàn diện cấu trúc bài học để tái thiết kế thành một phiên bản KHBD hoàn toàn mới, hiện đại, logic, có chiều sâu sư phạm và **được bóc tách SIÊU SIÊU CHI TIẾT về mọi mặt nội dung**.
 * **FILE GIÁO ÁN/KHBD GỐC chỉ đóng vai trò tài liệu tham khảo định hướng khoảng 30% nội dung.** Tối thiểu 70% nội dung còn lại bắt buộc bạn phải chủ động SÁNG TẠO, nâng cấp và phát triển mới.
-* Tuyệt đối không được sao chép ý tưởng, cấu trúc tổ chức hay bê nguyên nội dung từ giáo án gốc rồi chỉ thay đổi ngôn từ. Bạn cần đổi mới bản chất hoạt động học tập, hệ thống câu hỏi, hình thức tương tác và cách tổ chức lớp học (ưu tiên học tập theo trạm, trò chơi học tập số, khám phá, khảo sát trực tuyến, dự án mini, video, infographic...).
-* **KỊCH BẢN THỰC CHIẾN SIÊU SIÊU CHI TIẾT:** Giáo án phải thể hiện tường tận từng chi tiết nhỏ nhất trong lớp học. Từ lời dẫn dắt, câu hỏi gợi mở cụ thể của GV, dự kiến các câu trả lời đúng/sai của HS, những khó khăn/sai lầm thường gặp và cách GV gỡ rối, cho đến cách thức chia nhóm. Không được ghi chung chung kiểu "GV hướng dẫn HS thực hiện". **YÊU CẦU ĐẶC BIỆT: Phải ghi kịch bản siêu chi tiết để Giáo viên (GV) cầm giáo án lên là biết chính xác cách thức tổ chức, từng bước thực hiện thao tác làm như thế nào trên lớp. Kể cả việc tạo ra các câu hỏi gợi mở khác, hay thiết kế các trò chơi học tập, BẮT BUỘC PHẢI GHI RÕ TOÀN BỘ NỘI DUNG từng câu hỏi và đáp án của trò chơi đó. Tuyệt đối không được viết lướt.**
+* **KỊCH BẢN THỰC CHIẾN SIÊU SIÊU CHI TIẾT:** Giáo án phải thể hiện tường tận như một kịch bản phim. **CẤM SỬ DỤNG CÁC TỪ CHUNG CHUNG** như "GV hướng dẫn", "GV giải thích", "HS thực hành". Bạn BẮT BUỘC phải ghi rõ:
+  - GV nói chính xác câu gì để dẫn dắt?
+  - GV đặt câu hỏi gợi mở cụ thể là gì? (Ghi rõ nguyên văn câu hỏi).
+  - Dự kiến HS trả lời đúng/sai ra sao? Khó khăn cụ thể của HS là gì?
+  - GV gỡ rối bằng câu nói/hành động nào?
+* **YÊU CẦU ĐẶC BIỆT VỀ CÂU HỎI & TRÒ CHƠI:** Bất kỳ trò chơi hay hoạt động nào có câu hỏi (kể cả câu hỏi trắc nghiệm tự sáng tạo thêm), BẮT BUỘC PHẢI GHI RÕ TOÀN BỘ NỘI DUNG từng câu hỏi, từng đáp án A, B, C, D và đáp án đúng. Tuyệt đối không được viết lướt.
 * **Bảo toàn "SẢN PHẨM DỰ KIẾN":** Phần sản phẩm dự kiến trong các HĐ1, HĐ2, HĐ3, HĐ4 mà tôi cung cấp đã được xác định phù hợp với mục tiêu bài học, bạn KHÔNG ĐƯỢC tự ý thay đổi, cắt giảm nội dung chuyên môn. Nhiệm vụ của bạn là thiết kế phần tổ chức hoạt động sao cho dẫn dắt học sinh tạo ra đúng sản phẩm yêu cầu đó một cách sáng tạo và thực tiễn hơn.
-* AI chỉ đóng vai trò hỗ trợ giáo viên thiết kế hoạt động; học sinh chỉ tiếp cận AI ở mức tham khảo hoặc kiểm chứng, tuyệt đối không dùng AI thay thế quá trình tư duy độc lập.
 
 ### 2. QUY TẮC NGHIÊM NGẶT VỀ NỘI DUNG SGK, CHÈN HÌNH ẢNH & BỐ CỤC IN ĐẬM
 * **GIẢI QUYẾT TRIỆT ĐỂ 100% CÁC NỘI DUNG SGK:** Bắt buộc phải đưa vào giáo án và giải quyết triệt để 100% các nội dung/cấu phần có trong SGK (như Mở đầu, Khám phá, Tìm tòi, Đọc hiểu - Nghe hiểu, Kiến thức trọng tâm, Câu hỏi (?), Ví dụ, Luyện tập, Thực hành, Vận dụng, Tranh luận, Thử thách nhỏ...). Tuyệt đối không được bỏ sót bất kỳ thành phần nào, tất cả phải được thiết kế thành nhiệm vụ học tập và có đáp án/lời giải rõ ràng.
-* **Trích nguyên văn:** Đối với toàn bộ nội dung lấy từ SGK (đề bài, ví dụ, luyện tập, vận dụng, khám phá, kiến thức trọng tâm, ghi nhớ, bài tập...), bắt buộc phải **trích đúng nguyên văn 100%**. Tuyệt đối không tự ý rút gọn, diễn đạt lại hay thay đổi từ ngữ. Tất cả nội dung trích từ SGK phải được đặt trong *“ngoặc kép in nghiêng”*, giữ nguyên cấu trúc và kí hiệu.
+* **Trích nguyên văn:** Đối với toàn bộ nội dung lấy từ SGK, bắt buộc phải **trích đúng nguyên văn 100%**, đặt trong *“ngoặc kép in nghiêng”*, giữ nguyên cấu trúc và kí hiệu.
 * **Chỉ thị Chèn hình ảnh:** Tại bất kỳ vị trí nào trong giáo án cần có hình ảnh minh họa (từ SGK, biểu đồ, bảng biểu, hình ảnh trò chơi...), bạn BẮT BUỘC phải ghi rõ vị trí chèn hình, nêu rõ nội dung ảnh cần chèn, và BẮT BUỘC in đậm kèm in nghiêng bằng cú pháp: ***[Chèn hình ảnh [mô tả rõ nội dung ảnh cần chèn] tại đây]*** (ví dụ: ***[Chèn hình ảnh biểu đồ hình quạt tròn bài 6.38 tại đây]***).
-* **Vị trí ghi Đề bài và Lời giải (ÁP DỤNG CHO TẤT CẢ HOẠT ĐỘNG 1, 2, 3, 4):** Khi sử dụng "Ví dụ 1", "Bài 6.38" hoặc bất kỳ nội dung nào từ SGK, **phải ghi đầy đủ nguyên văn đề bài tại phần tổ chức hoạt động của GV và HS (cụ thể ở Bước 1: Chuyển giao nhiệm vụ)**. Toàn bộ phần kết quả, đáp án, lời giải chi tiết sẽ được tách riêng và đặt tại cột/mục "DỰ KIẾN SẢN PHẨM" hoặc "Sản phẩm".
+* **Vị trí ghi Đề bài và Lời giải (ÁP DỤNG CHO TẤT CẢ HOẠT ĐỘNG 1, 2, 3, 4):** Nguyên văn đề bài tại phần tổ chức hoạt động của GV và HS (Bước 1). Toàn bộ phần kết quả, đáp án, lời giải chi tiết tách riêng đặt tại cột "DỰ KIẾN SẢN PHẨM".
 * Nội dung Toán học bắt buộc trình bày bằng định dạng LaTeX chuẩn. **LƯU Ý ĐẶC BIỆT VỀ CỘT 8CM:** Vì hai cột "HOẠT ĐỘNG CỦA GV VÀ HS" và "DỰ KIẾN SẢN PHẨM" chỉ rộng khoảng 8cm khi xuất ra Word, TUYỆT ĐỐI KHÔNG viết mã LaTeX thành một chuỗi quá dài liên tục. Bắt buộc phải ngắt quãng công thức hoặc sử dụng thẻ \`<br>\` xuống dòng hợp lý để tránh làm giãn/lỗi vỡ cột.
-* **BỐ CỤC VÀ IN ĐẬM TIÊU ĐỀ:** Phân chia bố cục nội dung thật rõ ràng theo thứ tự a, b, c, d... **Bắt buộc IN ĐẬM các tiêu đề chính khi xuất hiện** (Ví dụ: **a) Kiến thức trọng tâm:**, **b) Ví dụ 2:**, **c) Vận dụng:** ...).
+* **BỐ CỤC VÀ IN ĐẬM TIÊU ĐỀ:** Phân chia bố cục nội dung thật rõ ràng theo thứ tự a, b, c, d... **Bắt buộc IN ĐẬM các tiêu đề chính khi xuất hiện** (Ví dụ: **a) Kiến thức trọng tâm:**, **b) Ví dụ 2:**...).
 
-### 3. TÍCH HỢP NĂNG LỰC SỐ (NLS) THỰC CHẤT VÀ CẬP NHẬT
-* **MỖI HOẠT ĐỘNG NHỎ TỐI THIỂU 01 NLS VÀ TOÀN BÀI 05-07 NLS:** Nếu tôi không cung cấp danh sách NLS cụ thể, HOẶC nếu NLS trong file gốc có nhưng chưa đủ, bạn BẮT BUỘC phải tự động phân tích bài học, sáng tạo và bổ sung thêm. **YÊU CẦU NGHIÊM NGẶT:** Đảm bảo tích hợp tối thiểu từ 05 đến 07 NLS khác nhau trải đều cho toàn bộ giáo án, VÀ **mỗi một hoạt động nhỏ (Ví dụ: Khởi động, 2.1, 2.2, Bài 1, Bài 2...) BẮT BUỘC phải có TỐI THIỂU 01 hoạt động NLS đi kèm.**
-* **SÁNG TẠO VÀ THAY MỚI HOÀN TOÀN NỘI DUNG/NHIỆM VỤ NLS:** Các nội dung NLS trong file gốc đã cũ và thiếu hiện đại. Tuyệt đối không bắt chước hay giữ lại các nhiệm vụ NLS từ file gốc. Bạn phải chủ động sáng tạo nội dung, nhiệm vụ và thao tác thực hành số hoàn toàn mới. *(Ví dụ: Nếu file gốc yêu cầu dùng AI tra cứu một câu hỏi cũ, bạn không nhất thiết phải tra lại câu đó, mà có thể sáng tạo ra nội dung tra cứu mới, hoặc đổi thành nhiệm vụ tạo sản phẩm số khác biệt, làm bài tập qua trò chơi trực tuyến...)*. Đừng gò bó vào nội dung NLS cũ, hãy tự do đề xuất để bài học sinh động nhất.
-* Giáo án phải được nâng cấp mức độ NLS khoảng 70% so với bản cũ. Việc tích hợp phải thực chất thông qua thao tác của học sinh trên các nền tảng (Padlet, Canva, GeoGebra, Desmos, Google Slides...).
-* **Lưu ý Cập nhật Tên Công cụ:** Từ tháng 04/2026, nền tảng Quizizz đã được đổi tên thành **Wayground**. Bạn bắt buộc phải sử dụng tên “Wayground” trong toàn bộ nội dung giáo án thay cho tên cũ, và chủ động cập nhật các xu hướng công nghệ mới nhất.
+### 3. TÍCH HỢP NĂNG LỰC SỐ (NLS) THỰC CHẤT VÀ SIÊU CHI TIẾT
+* **MỖI HOẠT ĐỘNG NHỎ TỐI THIỂU 01 NLS VÀ TOÀN BÀI 05-07 NLS:** Đảm bảo tích hợp tối thiểu từ 05 đến 07 NLS khác nhau trải đều cho toàn bộ giáo án, VÀ **mỗi một hoạt động nhỏ (Khởi động, 2.1, 2.2, Bài 1, Bài 2...) BẮT BUỘC phải có TỐI THIỂU 01 hoạt động NLS đi kèm.**
+* **KỊCH BẢN NLS SIÊU SIÊU CHI TIẾT:** Tuyệt đối không ghi chung chung kiểu "HS làm bài trên Wayground". Phải mô tả tường tận kịch bản thực thi số: 
+  - GV gửi link/mã code qua đâu? (Zalo lớp, quét QR...).
+  - HS dùng thiết bị gì để truy cập? (Điện thoại, máy tính bảng...).
+  - Thao tác cụ thể của HS trên app là gì? (Nhập đáp án, vẽ đồ thị trên GeoGebra, kéo thả trên màn hình, chụp ảnh bài làm tải lên Padlet...).
+  - Kết quả hiển thị tức thời trên màn hình của GV là gì? (Bảng xếp hạng realtime, lưới ảnh bài làm...).
+* **Lưu ý Cập nhật Tên Công cụ:** Từ tháng 04/2026, nền tảng Quizizz đã được đổi tên thành **Wayground**. Bạn bắt buộc phải sử dụng tên “Wayground” trong toàn bộ nội dung giáo án thay cho tên cũ.
 * Mọi nội dung có ứng dụng công nghệ trong bước thực hiện nhiệm vụ phải được **gạch chân** để làm nổi bật.
 * **Định dạng mô tả NLS bắt buộc:**
-    * [Mã NLS]: [Tên biểu hiện năng lực] + [Mô tả hành động số cụ thể của học sinh].
-    * *Ví dụ: **2.1.TC1a: Thực hiện các tương tác rõ ràng và thường xuyên với công nghệ số (sử dụng công cụ trắc nghiệm, bảng tương tác). Học sinh sử dụng Padlet để trình bày kết quả thảo luận nhóm và phản hồi chéo giữa các nhóm.***
-* Tuyệt đối không ghi NLS chung chung kiểu khẩu hiệu ("phát triển NLS cho HS").
+    * [Mã NLS]: [Tên biểu hiện năng lực] + [Mô tả hành động số siêu chi tiết của học sinh].
+    * *Ví dụ: **2.1.TC1a: Thực hiện các tương tác với công nghệ số. Học sinh dùng iPad truy cập link Padlet GV cung cấp, nhấn biểu tượng dấu "+" để chụp ảnh bài giải tự luận và đăng tải lên cột của nhóm mình.***
 
 ### 4. CẤU TRÚC VÀ HÌNH THỨC TRÌNH BÀY GIÁO ÁN
 Kế hoạch bài dạy phải trình bày đầy đủ các phần: Thông tin chung; Mục tiêu; Thiết bị và học liệu; Tiến trình dạy học.
@@ -337,10 +342,8 @@ Toàn bộ tiến trình dạy học gồm 4 hoạt động chính (1. Khởi đ
 * **Cột "NĂNG LỰC SỐ":** Ghi rõ Mã NLS; Biểu hiện; Công cụ số sử dụng; Hành động số cụ thể; Sản phẩm học tập số (BẮT BUỘC CÓ ÍT NHẤT 1 NLS TẠI CỘT NÀY CHO MỖI HOẠT ĐỘNG/BÀI TẬP).
 
 ### 5. QUY TẮC HÀNH VĂN (TIẾN TRÌNH CÔ ĐỌNG, CHẮC Ý VÀ SIÊU CHI TIẾT)
-* **DIỄN ĐẠT CÔ ĐỌNG, VỮNG CHẮC:** Nội dung phải diễn đạt thật sự chắc chắn, mạch lạc và bao quát đủ ý để GV cầm lên là hiểu ngay cách làm. KHÔNG viết thành các đoạn văn ngắn lan man hoặc dùng dấu ":" rồi viết dài dòng lê thê phía sau. 
+* **DIỄN ĐẠT CÔ ĐỌNG, VỮNG CHẮC NHƯNG SIÊU CHI TIẾT:** Kịch bản phải vô cùng chi tiết về hành động (GV nói gì, HS bấm nút nào), nhưng câu chữ phải chắc chắn, mạch lạc. KHÔNG viết lê thê, dài dòng.
 * **KIỂM SOÁT ĐỘ DÀI Ý:** Chia nhỏ kịch bản thành nhiều gạch đầu dòng (dùng dấu "-" hoặc "+"). Để đảm bảo sự gãy gọn, trực tiếp và rõ hành động, **mỗi gạch đầu dòng chỉ được dao động trong khoảng 25 – 35 từ**. (Riêng phần trích nguyên văn đề bài hoặc ngữ liệu dài từ SGK thì không bị giới hạn này).
-* Mô tả rõ ràng hành động: GV làm gì (giao nhiệm vụ, đặt câu hỏi chính xác là gì, nhận xét thế nào), HS làm gì (dự kiến HS trả lời gì, thảo luận cặp đôi ra sao, thao tác công cụ số thế nào...). **Bất kỳ trò chơi hay hoạt động nào có câu hỏi (dù là câu hỏi thêm) cũng phải liệt kê đầy đủ 100% nội dung câu hỏi và đáp án, tuyệt đối không được ghi thiếu một chữ.**
-* Mô tả rõ trình tự thao tác số của HS (truy cập, nhập dữ liệu, tạo sản phẩm, chia sẻ...) và cách GV hỗ trợ. (Chỉ ý nhỏ bên trong mới dùng dấu "-", tiêu đề "Bước" tuyệt đối không dùng).
 
 ### 6. YÊU CẦU ĐẦU RA CUỐI CÙNG
 1. Sử dụng 100% tiếng Việt chuẩn mực.
@@ -348,7 +351,6 @@ Toàn bộ tiến trình dạy học gồm 4 hoạt động chính (1. Khởi đ
 3. Bắt tay ngay vào việc xuất nội dung KHBD hoàn chỉnh từ dòng đầu tiên.
 4. Trả về định dạng Markdown chuyên nghiệp, thẩm mỹ. Chú ý các định dạng bảng (\`|\`) và lệnh \`<br>\` để tránh bị vỡ bảng khi tải file Word.
 5. Mục tiêu tối thượng là tạo ra một phiên bản KHBD hiện đại, nổi bật, có tính ứng dụng thực tế cao, đủ chi tiết đến mức giáo viên mang thẳng lên bục giảng sử dụng mà gần như không cần chỉnh sửa thêm.`;
-
 
 export const SYSTEM_INSTRUCTION = KHBD_REDESIGN_PROMPT;
 
