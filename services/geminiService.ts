@@ -40,15 +40,18 @@ export const generateNLSLessonPlan = async (
 
   // Cấu hình Model: Chuỗi fallback theo yêu cầu để dự phòng khi hết quota
   const models = [
-    "gemini-3.1-pro-preview",
-    "gemini-2.5-pro-preview",
-    "gemini-3-flash-preview",
-    "gemini-3.1-flash-lite",
-    "gemini-2.5-flash-preview",
-    "gemini-1.5-pro",
-    "gemini-1.5-flash"
-  ];
-  
+  // Dòng 3.1 mới nhất
+  "gemini-3.1-pro-preview",
+  "gemini-3.1-flash-lite",
+  // Dòng 3.0 (Tôi vừa thêm giúp bạn vào đây)
+  "gemini-3.0-pro",
+  "gemini-3.0-pro-preview", 
+  "gemini-3.0-flash",
+  "gemini-3.0-flash-preview",
+  // Dòng 2.5
+  "gemini-2.5-pro-preview",
+  "gemini-2.5-flash-preview"
+];
   let distributionContext = "";
   if (info.distributionContent && info.distributionContent.trim().length > 0) {
       distributionContext = `
