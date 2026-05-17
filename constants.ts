@@ -1,4 +1,3 @@
-
 export const NLS_COMPONENT_OPTIONS = [
   { code: "1.1", label: "1.1. Duyệt, tìm kiếm và lọc dữ liệu, thông tin và nội dung số" },
   { code: "1.2", label: "1.2. Đánh giá dữ liệu, thông tin và nội dung số" },
