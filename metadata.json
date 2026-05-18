@@ -1,6 +1,6 @@
 {
-  "name": "Giáo án tích hợp năng lực số",
-  "description": "AI-powered assistant for teachers to integrate Digital Competence (NLS) standards into lesson plans automatically.",
+  "name": "Giáo án tích hợp năng lực số (Gemini Enterprise Agent Platform)",
+  "description": "AI-powered assistant for teachers to integrate Digital Competence (NLS) standards into lesson plans automatically using Gemini Enterprise Agent Platform.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

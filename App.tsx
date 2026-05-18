@@ -5,8 +5,8 @@ import ContentInput from './components/ContentInput';
 import ManualNLSInput from './components/ManualNLSInput';
 import ResultDisplay from './components/ResultDisplay';
 import { Subject, Textbook, ManualNLSEntry } from './types';
-import { generateNLSLessonPlan } from './services/geminiService';
-import { Sparkles, SlidersHorizontal, ShieldCheck, Zap, Info, Check, Key } from 'lucide-react';
+import { generateNLSLessonPlan, GEMINI_MODELS } from './services/geminiService';
+import { Sparkles, SlidersHorizontal, ShieldCheck, Zap, Info, Check, ChevronDown } from 'lucide-react';
 
 // App component for AI-powered Digital Competence Lesson Plan Redesign (Updated for HMR stability - v3)
 const App: React.FC = () => {
@@ -35,9 +35,13 @@ const App: React.FC = () => {
   const [detailedReport, setDetailedReport] = useState(false);
   const [redesignMode, setRedesignMode] = useState(true); // Default to true as per request strength
 
-  // API Key State
+  // AI Configuration States (Restored for manual input)
   const [apiKey, setApiKey] = useState<string>(() => {
     return localStorage.getItem('gemini_api_key') || '';
+  });
+
+  const [selectedModel, setSelectedModel] = useState<string>(() => {
+    return localStorage.getItem('selected_model') || GEMINI_MODELS[0];
   });
   
   const [useVertexAI, setUseVertexAI] = useState<boolean>(() => {
@@ -54,10 +58,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localStorage.setItem('gemini_api_key', apiKey);
+    localStorage.setItem('selected_model', selectedModel);
     localStorage.setItem('use_vertex_ai', String(useVertexAI));
     localStorage.setItem('vertex_project_id', projectId);
     localStorage.setItem('vertex_location', location);
-  }, [apiKey, useVertexAI, projectId, location]);
+  }, [apiKey, selectedModel, useVertexAI, projectId, location]);
 
   // App State
   const [loading, setLoading] = useState(false);
@@ -65,11 +70,6 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleProcess = async () => {
-    if (!apiKey || apiKey.trim().length === 0) {
-      setError("Vui lòng nhập Google Gemini API Key để tiếp tục.");
-      return;
-    }
-
     if (!lessonContent || lessonContent.trim().length === 0) {
       setError("Vui lòng tải lên file giáo án (Giáo án trống hoặc chưa được tải).");
       return;
@@ -94,6 +94,7 @@ const App: React.FC = () => {
         { analyzeOnly, detailedReport, comparisonExport: false, redesignMode },
         {
           apiKey,
+          selectedModel,
           useVertexAI,
           projectId,
           location
@@ -104,7 +105,7 @@ const App: React.FC = () => {
       );
 
       if (!generatedText || generatedText.trim().length === 0) {
-          throw new Error("AI trả về kết quả rỗng. Vui lòng kiểm tra lại cấu hình API Key / Project ID / Hạn mức (Quota) hoặc thử lại sau.");
+          throw new Error("AI trả về kết quả rỗng. Vui lòng kiểm tra lại hạn mức (Quota) hoặc thử lại sau.");
       }
 
       setResult(generatedText);
@@ -161,72 +162,114 @@ const App: React.FC = () => {
                 setEntries={setManualNLSEntries}
             />
 
-            {/* API Key Section */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <div className="p-2 bg-indigo-100 rounded-lg mr-3">
-                    <Key className="text-indigo-600" size={20} />
+            {/* AI Platform & API Key Section */}
+            <div className="bg-white rounded-3xl shadow-xl shadow-indigo-100/50 border border-indigo-100 overflow-hidden">
+              <div className="bg-gradient-to-r from-indigo-600 to-purple-700 p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-white/20 backdrop-blur-md rounded-xl mr-4 shadow-inner">
+                      <Sparkles className="text-white fill-white/20" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg tracking-tight">Gemini Enterprise Agent Platform</h3>
+                      <p className="text-xs text-indigo-100 font-medium opacity-90">Cấu hình kết nối AI hiệu năng cao</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-slate-800">Cấu hình AI API Key</h3>
-                    <p className="text-xs text-slate-500">Chọn dịch vụ và nhập mã API của bạn</p>
+                  
+                  <div className="flex bg-black/20 p-1 rounded-xl backdrop-blur-sm border border-white/10">
+                    <button 
+                      onClick={() => setUseVertexAI(false)}
+                      className={`px-4 py-2 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all ${!useVertexAI ? 'bg-white shadow-lg text-indigo-700' : 'text-white/70 hover:text-white'}`}
+                    >
+                      Google AI
+                    </button>
+                    <button 
+                      onClick={() => setUseVertexAI(true)}
+                      className={`px-4 py-2 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all ${useVertexAI ? 'bg-white shadow-lg text-indigo-700' : 'text-white/70 hover:text-white'}`}
+                    >
+                      Vertex AI
+                    </button>
                   </div>
-                </div>
-                
-                <div className="flex bg-slate-100 p-1 rounded-xl">
-                  <button 
-                    onClick={() => setUseVertexAI(false)}
-                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${!useVertexAI ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
-                  >
-                    Google AI
-                  </button>
-                  <button 
-                    onClick={() => setUseVertexAI(true)}
-                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${useVertexAI ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
-                  >
-                    Vertex AI
-                  </button>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <input
-                    type="password"
-                    placeholder={useVertexAI ? "Nhập Google Cloud / Vertex AI API Key" : "Nhập Google Gemini API Key bắt đầu bằng AIza..."}
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
-                  />
+              <div className="p-6 space-y-5">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1 flex items-center">
+                    <Zap size={10} className="mr-1 fill-amber-400 text-amber-400" />
+                    Google Cloud API Key
+                  </label>
+                  <div className="relative group">
+                    <input
+                      type="password"
+                      placeholder={useVertexAI ? "Nhập Vertex AI Key (AIza...)" : "Nhập Google AI Key (AIza...)"}
+                      value={apiKey}
+                      onChange={(e) => setApiKey(e.target.value)}
+                      className="w-full pl-4 pr-12 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none text-sm transition-all font-mono"
+                    />
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-400 transition-colors">
+                      <ShieldCheck size={20} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1 flex items-center">
+                    <Sparkles size={10} className="mr-1 text-indigo-500" />
+                    Lựa chọn Model AI
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={selectedModel}
+                      onChange={(e) => setSelectedModel(e.target.value)}
+                      className="w-full pl-4 pr-12 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none text-sm transition-all appearance-none font-medium text-slate-700 cursor-pointer hover:border-indigo-200"
+                    >
+                      {GEMINI_MODELS.map((model) => (
+                        <option key={model} value={model}>
+                          {model}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                      <ChevronDown size={20} />
+                    </div>
+                  </div>
                 </div>
 
                 {useVertexAI && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Project ID</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 animate-in fade-in slide-in-from-top-4 duration-500">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Cloud Project ID</label>
                       <input
                         type="text"
-                        placeholder="my-project-id"
+                        placeholder="my-project-123"
                         value={projectId}
                         onChange={(e) => setProjectId(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
+                        className="w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none text-sm transition-all"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Location</label>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Location / Region</label>
                       <input
                         type="text"
                         placeholder="us-central1"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
+                        className="w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none text-sm transition-all"
                       />
                     </div>
                   </div>
                 )}
+                
+                <div className="flex items-start bg-amber-50 rounded-xl p-4 border border-amber-100">
+                  <Info size={16} className="text-amber-600 mt-0.5 shrink-0" />
+                  <div className="ml-3">
+                    <p className="text-[11px] text-amber-800 leading-relaxed">
+                      Thông tin cấu hình được <strong>lưu mã hóa</strong> trong LocalStorage trên trình duyệt của bạn. Chúng tôi khuyến khích sử dụng <strong>API Key từ Cloud Console</strong> để kích hoạt đầy đủ tính năng "Gemini Enterprise".
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="text-xs text-slate-400 mt-3 italic">API key và cấu hình chỉ được lưu trên trình duyệt của bạn (LocalStorage).</p>
             </div>
             
             {/* Options Panel */}
