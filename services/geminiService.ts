@@ -1,11 +1,33 @@
 import { LessonInfo, ProcessingOptions } from "../types";
 
+// Xuất danh sách model ra để giao diện (UI) có thể import và tạo Menu Dropdown cho bạn chọn
+export const GEMINI_MODELS = [
+  // Dòng 3.1 mới nhất
+  "gemini-3.1-pro-preview",
+  "gemini-3.1-flash-lite",
+  
+  // Dòng 3.0
+  "gemini-3.0-pro",
+  "gemini-3.0-pro-preview", 
+  "gemini-3.0-flash",
+  "gemini-3.0-flash-preview",
+
+  // Dòng 2.5
+  "gemini-2.5-pro-preview",
+  "gemini-2.5-flash-preview",
+
+  // Dòng 1.5 ổn định (Stable)
+  "gemini-1.5-pro",
+  "gemini-1.5-flash"
+];
+
 export const generateNLSLessonPlan = async (
   info: LessonInfo,
   options: ProcessingOptions,
   authConfig: any,
   onProgress?: (text: string) => void
 ): Promise<string> => {
+  // Ghi chú nhỏ: Đảm bảo rằng model bạn chọn trên giao diện đã được truyền vào biến 'options' hoặc 'authConfig' để gửi lên backend nhé.
   const response = await fetch("/api/generate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
