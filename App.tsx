@@ -104,13 +104,21 @@ const App: React.FC = () => {
       );
 
       if (!generatedText || generatedText.trim().length === 0) {
-          throw new Error("AI trả về kết quả rỗng. Vui lòng thử lại với file giáo án rõ ràng hơn.");
+          throw new Error("AI trả về kết quả rỗng. Vui lòng kiểm tra lại cấu hình API Key / Project ID / Hạn mức (Quota) hoặc thử lại sau.");
       }
 
       setResult(generatedText);
     } catch (err: any) {
       console.error("Process Error:", err);
-      setError(err.message || "Đã xảy ra lỗi không xác định khi kết nối với AI.");
+      let displayError = err.message || "Đã xảy ra lỗi không xác định khi kết nối với AI.";
+      // Catch JSON errors from server
+      if (displayError.includes('{"error"')) {
+        try {
+          const parsed = JSON.parse(displayError);
+          displayError = parsed.error || displayError;
+        } catch(e) {}
+      }
+      setError(displayError);
     } finally {
       setLoading(false);
     }

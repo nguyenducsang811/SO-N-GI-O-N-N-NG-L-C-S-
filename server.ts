@@ -135,45 +135,124 @@ async function startServer() {
       parts.push(...getPartFromContent(cleanContent, "NỘI DUNG GIÁO ÁN GỐC CẦN NÂNG CẤP (BIÊN SOẠN LẠI)"));
 
       const modelsToTry = [
+        "gemini-3.1-pro",
+        "gemini-3.1-flash",
+        "gemini-3.0-pro",
+        "gemini-3.0-flash",
+        "gemini-2.0-pro-exp-02-05",
         "gemini-2.0-flash",
+        "gemini-1.5-pro-002",
+        "gemini-1.5-pro-latest",
+        "gemini-1.5-flash-002",
+        "gemini-1.5-flash-latest"
+      ];
+
+      const vertexModelsToTry = [
+        "gemini-3.1-pro",
+        "gemini-3.1-flash",
+        "gemini-3.0-pro",
+        "gemini-3.0-flash",
+        "gemini-2.0-pro-exp-02-05",
+        "gemini-2.0-flash",
+        "gemini-1.5-pro-002",
+        "gemini-1.5-flash-002",
         "gemini-1.5-pro",
         "gemini-1.5-flash"
       ];
 
       if (useVertexAI) {
-        // Vertex AI API Call (via REST)
-        const responseBody = await callVertexAI(authConfig, "gemini-1.5-pro", String(SYSTEM_INSTRUCTION), [{ role: 'user', parts: parts }]);
-        
-        if (responseBody) {
-          const reader = responseBody.getReader();
-          const decoder = new TextDecoder();
-          let fullText = "";
+        if (authConfig.projectId && authConfig.projectId.startsWith("gen-lang-client-")) {
+           return res.status(400).json({ 
+             error: "Lỗi: ID Dự án (Project ID) này thuộc về Google AI Studio, không phải Vertex AI. " +
+                    "Project ID bắt đầu bằng 'gen-lang-client-...' được tạo tự động khi bạn tạo API Key tại AI Studio. " +
+                    "Vì vậy, vui lòng chọn chế độ 'Google AI' thay vì 'Vertex AI'. " +
+                    "Vertex AI yêu cầu ID Dự án từ Google Cloud Platform (Vd: my-project-123)."
+           });
+        }
 
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            
-            const chunk = decoder.decode(value);
-            // Vertex AI returns an array of JSON objects in the stream
-            try {
-              // The chunk might contain multiple JSON objects
-              const jsonStrings = chunk.split('\n').filter(s => s.trim());
-              for (const jsonStr of jsonStrings) {
-                // Remove [ and ] and , if it's a standard JSON array stream
-                const cleanJson = jsonStr.trim().replace(/^\[/, '').replace(/\]$/, '').replace(/^,/, '');
-                if (cleanJson) {
-                  const data = JSON.parse(cleanJson);
-                  const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                  if (content) {
-                    fullText += content;
-                    res.write(`data: ${JSON.stringify({ text: content })}\n\n`);
+        let vertexSuccess = false;
+        let lastVertexError = "";
+
+        for (const modelId of vertexModelsToTry) {
+           try {
+              const responseBody = await callVertexAI(authConfig, modelId, String(SYSTEM_INSTRUCTION), [{ role: 'user', parts: parts }]);
+              
+              if (responseBody) {
+                const reader = responseBody.getReader();
+                const decoder = new TextDecoder();
+                let fullText = "";
+                let buffer = "";
+
+                while (true) {
+                  const { done, value } = await reader.read();
+                  if (done) break;
+                  
+                  buffer += decoder.decode(value, { stream: true });
+                  
+                  // Vertex AI stream is often a JSON array: [ {...}, {...} ]
+                  // Each chunk might contain one or more JSON objects or parts of them.
+                  // We need to parse it more robustly.
+                  
+                  let startIdx = 0;
+                  while (true) {
+                    // Find the start of a JSON object
+                    const openBrace = buffer.indexOf('{', startIdx);
+                    if (openBrace === -1) break;
+                    
+                    // We need a basic bracket counting to find the end of the object
+                    let count = 0;
+                    let endIdx = -1;
+                    let inString = false;
+                    for (let i = openBrace; i < buffer.length; i++) {
+                      const char = buffer[i];
+                      if (char === '"' && buffer[i-1] !== '\\') inString = !inString;
+                      if (!inString) {
+                        if (char === '{') count++;
+                        else if (char === '}') count--;
+                        if (count === 0) {
+                          endIdx = i;
+                          break;
+                        }
+                      }
+                    }
+                    
+                    if (endIdx !== -1) {
+                      const jsonStr = buffer.substring(openBrace, endIdx + 1);
+                      try {
+                        const data = JSON.parse(jsonStr);
+                        // Vertex AI might return parts differently in some regions/versions
+                        const content = data.candidates?.[0]?.content?.parts?.[0]?.text || 
+                                        data.result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (content) {
+                          fullText += content;
+                          res.write(`data: ${JSON.stringify({ text: content })}\n\n`);
+                        }
+                      } catch (e) {
+                        // Not a valid JSON object yet or other issue
+                      }
+                      startIdx = endIdx + 1;
+                    } else {
+                      // Incomplete object, wait for more data
+                      break;
+                    }
                   }
+                  buffer = buffer.substring(startIdx);
+                }
+                
+                if (fullText) {
+                  vertexSuccess = true;
+                  break;
                 }
               }
-            } catch (e) {
-              // Partial JSON or other issue, ignore or handle
-            }
-          }
+           } catch (e: any) {
+             console.error(`Vertex AI error with model ${modelId}:`, e);
+             lastVertexError = e.message;
+             // Continue to next model if it's a 404 or similar
+           }
+        }
+
+        if (!vertexSuccess) {
+          res.write(`data: ${JSON.stringify({ error: `Không thể kết nối Vertex AI: ${lastVertexError}. Vui lòng kiểm tra Project ID, Location và Model access.` })}\n\n`);
         }
       } else {
         // Google AI Studio
@@ -223,12 +302,9 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    if (express.static(distPath)) {
-      app.use(express.static(distPath));
-    }
-    app.get('*', (req, res) => {
-      const indexPath = path.join(process.cwd(), 'dist', 'index.html');
-      res.sendFile(indexPath);
+    app.use(express.static(distPath));
+    app.get('*all', (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
