@@ -1,234 +1,54 @@
-import { GoogleGenAI } from "@google/genai";
 import { LessonInfo, ProcessingOptions } from "../types";
-import { SYSTEM_INSTRUCTION, NLS_FRAMEWORK_DATA } from "../constants";
 
 export const generateNLSLessonPlan = async (
   info: LessonInfo,
   options: ProcessingOptions,
-  apiKeyParam?: string,
+  authConfig: any,
   onProgress?: (text: string) => void
 ): Promise<string> => {
-  
-  // Initialize inside function to avoid top-level execution issues
-  const apiKey = apiKeyParam;
-  if (!apiKey) {
-    throw new Error("Vui lòng nhập Google Gemini API Key để tiếp tục.");
-  }
-  
-  const ai = new GoogleGenAI({ apiKey: apiKey });
+  const response = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ info, options, authConfig })
+  });
 
-  // Tiền xử lý để loại bỏ khoảng trắng dư thừa và mã HTML trống làm tốn quota
-  const optimizeTextForTokenSaving = (text: string): string => {
-    if (!text) return "";
-    if (text.startsWith("data:image/") || text.startsWith("data:application/pdf")) return text; 
-    
-    let optimized = text;
-    // Xóa các dòng trống liên tiếp (3 dòng trở lên thành 2 dòng)
-    optimized = optimized.replace(/\n{3,}/g, '\n\n');
-    // Xóa khoảng trắng dư thừa liên tiếp (từ 3 khoảng trắng trở lên thành 1)
-    optimized = optimized.replace(/ {3,}/g, ' ');
-    // Xóa các thẻ HTML vô nghĩa thường có trong word convert (như thẻ span rỗng)
-    optimized = optimized.replace(/<span[^>]*>\s*<\/span>/gi, '');
-    optimized = optimized.replace(/<p[^>]*>\s*<\/p>/gi, '');
-    optimized = optimized.replace(/<div[^>]*>\s*<\/div>/gi, '');
-    return optimized.trim();
-  };
-
-  const cleanContent = optimizeTextForTokenSaving(info.content);
-  const cleanDistribution = optimizeTextForTokenSaving(info.distributionContent || "");
-  const cleanTextbook = optimizeTextForTokenSaving(info.textbookContent || "");
-
-  // Cấu hình Model: Chuỗi fallback theo yêu cầu để dự phòng khi hết quota
-  const models = [
-  // Dòng 3.1 mới nhất
-  "gemini-3.1-pro-preview",
-  "gemini-3.1-flash-lite",
-  // Dòng 3.0 (Tôi vừa thêm giúp bạn vào đây)
-  "gemini-3.0-pro",
-  "gemini-3.0-pro-preview", 
-  "gemini-3.0-flash",
-  "gemini-3.0-flash-preview",
-  // Dòng 2.5
-  "gemini-2.5-pro-preview",
-  "gemini-2.5-flash-preview"
-];
-  let distributionContext = "";
-  if (info.distributionContent && info.distributionContent.trim().length > 0) {
-      distributionContext = `
-      =========================================================
-      🚨 QUY TẮC TỐI THƯỢNG (KHI CÓ FILE HỆ THỐNG HOẠT ĐỘNG - STRICT MODE):
-      Người dùng ĐÃ CUNG CẤP nội dung HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TOÁN TÍCH HỢP NĂNG LỰC SỐ (THCS).
-      Đây là văn bản pháp quy, bạn phải tuân thủ TUYỆT ĐỐI các yêu cầu sau:
-
-      1. Đọc tên bài học trong "NỘI DUNG GIÁO ÁN GỐC".
-      2. Tìm bài học tương ứng trong nội dung Hệ thống hoạt động.
-      3. Trích xuất NGUYÊN VĂN, CHÍNH XÁC nội dung các yêu cầu về "Năng lực số" của bài học đó trong văn bản này.
-      4. Đưa nội dung trích xuất đó vào phần Mục tiêu Năng lực số.
-      
-      ⛔️ CÁC ĐIỀU CẤM (STRICTLY PROHIBITED):
-      - CẤM TUYỆT ĐỐI việc tự ý thêm bất kỳ năng lực số nào khác không có trong file Hệ thống hoạt động của bài học này (Trừ khi có YÊU CẦU THỦ CÔNG bên dưới).
-      - CẤM tự ý nâng cao hay thay đổi cấp độ nếu tài liệu không yêu cầu.
-      - CẤM dùng Khung năng lực số tham chiếu để bịa thêm mục tiêu. CHỈ dùng những gì văn bản Hệ thống hoạt động ghi.
-      - Nếu mục tiêu năng lực số trong tài liệu này để trống, thì mục tiêu NLS ghi là: "Không có (theo tài liệu Hệ thống hoạt động)".
-
-      Đánh dấu mục tiêu này bằng dòng chữ: "(Nội dung trích xuất nguyên văn từ Hệ thống hoạt động tích hợp NLS)".
-
-      NỘI DUNG HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TÍCH HỢP NLS:
-      ${cleanDistribution}
-      =========================================================
-      `;
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Server error: ${response.status}`);
   }
 
-  // Format manual entries
-  let manualContext = "";
-  if (info.manualNLS && info.manualNLS.length > 0) {
-      const manualItems = info.manualNLS.map(item => `- Năng lực [${item.code} - ${item.name}]:\n  Nội dung yêu cầu: ${item.description}`).join("\n\n");
-      manualContext = `
-      =========================================================
-      🎯 YÊU CẦU CỤ THỂ TỪ GIÁO VIÊN (MANUAL INPUT - ƯU TIÊN CAO NHẤT):
-      Người dùng đã chỉ định cụ thể các năng lực và nội dung yêu cầu cần tích hợp. 
-      Bạn BẮT BUỘC phải đưa các nội dung này vào giáo án, ngay cả khi PPCT không đề cập.
-      
-      Danh sách yêu cầu:
-      ${manualItems}
-      =========================================================
-      `;
-  }
+  const reader = response.body?.getReader();
+  if (!reader) throw new Error("Could not start stream");
 
-  // Function to determine if a string is a base64 image and return a Part
-  const getPartFromContent = (text: string, label: string): any[] => {
-    if (!text) return [];
-    
-    // Check if it's a data URL (base64 image or pdf)
-    if (text.startsWith("data:")) {
-      const match = text.match(/^data:([^;]+);base64,(.+)$/);
-      if (match) {
-        return [
-          { text: `\n${label}:\n` },
-          {
-            inlineData: {
-              data: match[2],
-              mimeType: match[1]
-            }
+  const decoder = new TextDecoder();
+  let fullText = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    const chunk = decoder.decode(value);
+    const lines = chunk.split("\n");
+
+    for (const line of lines) {
+      if (line.startsWith("data: ")) {
+        const jsonStr = line.substring(6).trim();
+        if (!jsonStr) continue;
+        try {
+          const data = JSON.parse(jsonStr);
+          if (data.error) throw new Error(data.error);
+          if (data.text) {
+            fullText += data.text;
+            if (onProgress) onProgress(fullText);
           }
-        ];
+        } catch (e) {
+          // Ignore parsing errors for non-JSON lines or partial bits
+        }
+      } else if (line.startsWith("event: end")) {
+        return fullText;
       }
     }
-    
-    // Default to text
-    return [{ text: `\n${label}:\n${text}\n` }];
-  };
-
-  const callModel = async (modelId: string) => {
-    // Build parts array
-    const parts: any[] = [];
-    
-    // Reference Data
-    parts.push({ text: `DỮ LIỆU THAM CHIẾU KHUNG NĂNG LỰC SỐ:\n${String(NLS_FRAMEWORK_DATA)}\n` });
-    
-    // Lesson Info
-    parts.push({ text: `THÔNG TIN GIÁO ÁN ĐẦU VÀO:\n- Bộ sách: ${String(info.textbook)}\n- Môn học: ${String(info.subject)}\n- Khối lớp: ${String(info.grade)}\n` });
-    
-    // Distribution Context (Text only for now as it's a complicated prompt)
-    if (distributionContext) {
-      parts.push({ text: String(distributionContext) });
-    } else if (cleanDistribution) {
-       parts.push(...getPartFromContent(cleanDistribution, "NỘI DUNG HỆ THỐNG HOẠT ĐỘNG DẠY HỌC TÍCH HỢP NLS"));
-    }
-
-    // Textbook Content
-    if (cleanTextbook) {
-      parts.push(...getPartFromContent(cleanTextbook, "NỘI DUNG TỪ SÁCH GIÁO KHOA (SGK) CHUẨN"));
-    }
-
-    // Manual Context
-    if (manualContext) {
-      parts.push({ text: String(manualContext) });
-    }
-
-    // Main Content (Lesson Plan to be upgraded)
-    parts.push(...getPartFromContent(cleanContent, "NỘI DUNG GIÁO ÁN GỐC CẦN NÂNG CẤP (BIÊN SOẠN LẠI)"));
-
-    // Final Requirements
-    parts.push({ text: `
-    YÊU CẦU QUAN TRỌNG:
-    - Tuân thủ tuyệt đối SYSTEM_INSTRUCTION về cấu trúc, trình bày và tích hợp NLS.
-    - Đảm bảo tính sư phạm chuyên sâu, chi tiết trong từng bước tổ chức thực hiện.
-    - Trả về kết quả bằng **Tiếng Việt**.
-    `});
-
-    const responseStream = await ai.models.generateContentStream({
-      model: modelId,
-      config: {
-        systemInstruction: { parts: [{ text: String(SYSTEM_INSTRUCTION) }] },
-        temperature: 0.1,
-      },
-      contents: [{ role: 'user', parts: parts }],
-    });
-    
-    let text = "";
-    for await (const chunk of responseStream) {
-        if (chunk.text) {
-            text += chunk.text;
-            if (onProgress) {
-                onProgress(text);
-            }
-        }
-    }
-
-    // Post-processing to fix any rogue LaTeX chemistry formulas that the AI might still output
-    // e.g., $C{15}H{31}COOH$ or $$C_{15}H_{31}COOH$$ or \( C_{15}H_{31}COOH \)
-    
-    // 1. Handle \( ... \) and \[ ... \] blocks by converting them to $...$ and $$...$$
-    text = text.replace(/\\\((.*?)\\\)/g, (match, content) => {
-      return `$${content}$`;
-    });
-    text = text.replace(/\\\[(.*?)\\\]/g, (match, content) => {
-      return `$$${content}$$`;
-    });
-
-    // 2. Handle $...$ and $$...$$ blocks
-    // We want to keep LaTeX for math formulas, so we don't remove $ signs here anymore.
-    // The user will convert them manually in Word.
-
-    // 3. Clean up escaped braces and dollar signs
-    text = text.replace(/\\{/g, '{').replace(/\\}/g, '}').replace(/\\\$/g, '$');
-
-    return text;
-  };
-
-  try {
-    let lastError: any = null;
-    let quotaErrorOccurred = false;
-    
-    for (const modelId of models) {
-        try {
-            console.log(`Đang thử xử lý với model: ${modelId}`);
-            const text = await callModel(modelId);
-            if (!text) throw new Error("API trả về kết quả rỗng.");
-            return text;
-        } catch (error: any) {
-            console.warn(`Model ${modelId} gặp lỗi:`, error);
-            lastError = error;
-            
-            // Nếu lỗi là 429 (Too many requests) hoặc liên quan đến Quota
-            if (error.message?.includes("429") || error.message?.toLowerCase().includes("quota") || error.message?.toLowerCase().includes("exhausted")) {
-                quotaErrorOccurred = true;
-            }
-            // Tiếp tục thử model tiếp theo
-        }
-    }
-    
-    // Nếu tất cả các model đều thất bại
-    if (quotaErrorOccurred) {
-        throw new Error("Tài khoản của bạn đã hết hạn mức (quota) Gemini miễn phí trong hôm nay. Vui lòng thử lại sau vài giờ hoặc ngày mai.");
-    } else if (lastError?.message?.includes("API_KEY_INVALID") || lastError?.message?.includes("400")) {
-        throw new Error("Google Gemini API Key không hợp lệ. Vui lòng kiểm tra lại mã API của bạn.");
-    }
-    
-    throw new Error(lastError?.message || "Tất cả các mô hình AI đều gặp sự cố kỹ thuật. Vui lòng thử lại sau.");
-  } catch (error: any) {
-    console.error("Gemini API Error (All models failed):", error);
-    throw new Error(error.message || "Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại sau.");
   }
+
+  return fullText;
 };

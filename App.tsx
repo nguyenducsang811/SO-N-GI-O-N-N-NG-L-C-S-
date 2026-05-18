@@ -39,10 +39,25 @@ const App: React.FC = () => {
   const [apiKey, setApiKey] = useState<string>(() => {
     return localStorage.getItem('gemini_api_key') || '';
   });
+  
+  const [useVertexAI, setUseVertexAI] = useState<boolean>(() => {
+    return localStorage.getItem('use_vertex_ai') === 'true';
+  });
+  
+  const [projectId, setProjectId] = useState<string>(() => {
+    return localStorage.getItem('vertex_project_id') || '';
+  });
+  
+  const [location, setLocation] = useState<string>(() => {
+    return localStorage.getItem('vertex_location') || 'us-central1';
+  });
 
   useEffect(() => {
     localStorage.setItem('gemini_api_key', apiKey);
-  }, [apiKey]);
+    localStorage.setItem('use_vertex_ai', String(useVertexAI));
+    localStorage.setItem('vertex_project_id', projectId);
+    localStorage.setItem('vertex_location', location);
+  }, [apiKey, useVertexAI, projectId, location]);
 
   // App State
   const [loading, setLoading] = useState(false);
@@ -77,7 +92,12 @@ const App: React.FC = () => {
             manualNLS: manualNLSEntries 
         },
         { analyzeOnly, detailedReport, comparisonExport: false, redesignMode },
-        apiKey,
+        {
+          apiKey,
+          useVertexAI,
+          projectId,
+          location
+        },
         (progressText) => {
             setResult(progressText);
         }
@@ -135,23 +155,70 @@ const App: React.FC = () => {
 
             {/* API Key Section */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-              <div className="flex items-center mb-4">
-                <div className="p-2 bg-indigo-100 rounded-lg mr-3">
-                  <Key className="text-indigo-600" size={20} />
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <div className="p-2 bg-indigo-100 rounded-lg mr-3">
+                    <Key className="text-indigo-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-800">Cấu hình AI API Key</h3>
+                    <p className="text-xs text-slate-500">Chọn dịch vụ và nhập mã API của bạn</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-800">Cấu hình Gemini API Key</h3>
-                  <p className="text-xs text-slate-500">Nhập API key của bạn để sử dụng công cụ</p>
+                
+                <div className="flex bg-slate-100 p-1 rounded-xl">
+                  <button 
+                    onClick={() => setUseVertexAI(false)}
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${!useVertexAI ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                  >
+                    Google AI
+                  </button>
+                  <button 
+                    onClick={() => setUseVertexAI(true)}
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${useVertexAI ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'}`}
+                  >
+                    Vertex AI
+                  </button>
                 </div>
               </div>
-              <input
-                type="password"
-                placeholder="Nhập Google Gemini API Key bắt đầu bằng AIza..."
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
-              />
-               <p className="text-xs text-slate-400 mt-2">API key chỉ được lưu trên trình duyệt của bạn và dùng trực tiếp để gọi AI.</p>
+
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="password"
+                    placeholder={useVertexAI ? "Nhập Google Cloud / Vertex AI API Key" : "Nhập Google Gemini API Key bắt đầu bằng AIza..."}
+                    value={apiKey}
+                    onChange={(e) => setApiKey(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
+                  />
+                </div>
+
+                {useVertexAI && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Project ID</label>
+                      <input
+                        type="text"
+                        placeholder="my-project-id"
+                        value={projectId}
+                        onChange={(e) => setProjectId(e.target.value)}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Location</label>
+                      <input
+                        type="text"
+                        placeholder="us-central1"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm transition-all"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <p className="text-xs text-slate-400 mt-3 italic">API key và cấu hình chỉ được lưu trên trình duyệt của bạn (LocalStorage).</p>
             </div>
             
             {/* Options Panel */}
